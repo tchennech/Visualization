@@ -1,6 +1,13 @@
 # Visualization
 git clone https://github.com/tchennech/Visualization.git
 ***
+1. 开发前一定要 git pull  
+2. 开发完后 先用 git status 检查什么文件被修改了，如果有意料之外的文件自己处理不了再找人处理  
+3. 提交步骤：  
+i) git add .  
+ii) git commit -m "本次提交时为什么的信息"  
+iii) git push  
+***
 ## database
 create DATABASE ed_vs;  
 use ed_vs;  
