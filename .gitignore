@@ -36,3 +36,4 @@ Thumbs.db
 .vscode
 node_modules/
 web/test/
+web/package-lock.json
