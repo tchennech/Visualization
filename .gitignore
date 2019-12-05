@@ -3,6 +3,9 @@
 #other file
 *.7z
 
+# pom
+pom.xml
+
 #package file
 *.war
 *.ear
