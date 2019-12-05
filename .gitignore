@@ -37,3 +37,6 @@ Thumbs.db
 node_modules/
 web/test/
 web/package-lock.json
+
+# data
+data-visualization/
