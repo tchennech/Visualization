@@ -14,13 +14,10 @@
 
 <script>
 import 'element-ui/lib/theme-chalk/display.css'
-import gHead from '@/components/graHead.vue'
 
 export default {
   name: 'App',
-  components: {
-    gHead
-  },
+  
   data () {
     return {
       textarea: ''

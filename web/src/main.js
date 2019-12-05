@@ -9,7 +9,7 @@ import './assets/font/iconfont.css'
 import VueClipboard from 'vue-clipboard2'
 // import $ from 'jquery'
 import VueResource from 'vue-resource'
-import { setCookie, getCookie, delCookie } from './assets/js/cookie.js'
+import { setCookie, getCookie, delCookie, getUser } from './assets/js/cookie.js'
 Vue.use(VueClipboard)
 Vue.use(ElementUI)
 Vue.use(VueResource)
@@ -22,6 +22,7 @@ Vue.http.options.emulateJSON = true
 Vue.prototype.setCookie = setCookie
 Vue.prototype.getCookie = getCookie
 Vue.prototype.delCookie = delCookie
+Vue.prototype.getUser = getUser
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

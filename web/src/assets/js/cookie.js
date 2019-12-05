@@ -21,3 +21,11 @@ export function getCookie (cookieName) {
 export function delCookie (cookieName) {
   setCookie(cookieName, '', -1)
 }
+export function getUser () {
+  let uerTemp = getCookie('user')
+  if (uerTemp == null || uerTemp === '' || uerTemp === undefined) {
+    this.$router.push('/login')
+  } else {
+    return JSON.parse(uerTemp)
+  }
+}

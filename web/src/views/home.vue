@@ -1,24 +1,22 @@
 <template>
   <div>
-    {{user.userName}}, {{user.password}}, {{user.role}}
+    <gHead></gHead>
   </div>
 </template>
 
 <script>
-
+import gHead from "@/components/head.vue"
 export default {
+  components: {
+    gHead
+  },
   data () {
     return {
       user: {}
     }
   },
   mounted () {
-    let uerTemp = this.getCookie('user')
-    if (uerTemp == null || uerTemp === '' || uerTemp === undefined) {
-      this.$router.push('/login')
-    } else {
-      this.user = JSON.parse(uerTemp)
-    }
+    this.user = this.getUser()
   },
   methods: {
   }
