@@ -1,5 +1,8 @@
 *.class
 
+#other file
+*.7z
+
 #package file
 *.war
 *.ear
@@ -8,7 +11,7 @@
 *.orig
 
 #maven ignore
-/target
+target/
 
 #idea
 .idea/
