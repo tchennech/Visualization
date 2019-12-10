@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clt.dao.ConnectMapper" >
+  <resultMap id="BaseResultMap" type="com.clt.domain.Connect" >
+    <constructor >
+      <idArg column="bf_StudentID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="gra_Name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cla_Name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bf_sex" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bf_Name" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    bf_StudentID, gra_Name, cla_Name, bf_sex, bf_Name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from df_connect
+    where bf_StudentID = #{bfStudentid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from df_connect
+    where bf_StudentID = #{bfStudentid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.clt.domain.Connect" >
+    insert into df_connect (bf_StudentID, gra_Name, cla_Name, 
+      bf_sex, bf_Name)
+    values (#{bfStudentid,jdbcType=VARCHAR}, #{graName,jdbcType=VARCHAR}, #{claName,jdbcType=VARCHAR}, 
+      #{bfSex,jdbcType=VARCHAR}, #{bfName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.clt.domain.Connect" >
+    insert into df_connect
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bfStudentid != null" >
+        bf_StudentID,
+      </if>
+      <if test="graName != null" >
+        gra_Name,
+      </if>
+      <if test="claName != null" >
+        cla_Name,
+      </if>
+      <if test="bfSex != null" >
+        bf_sex,
+      </if>
+      <if test="bfName != null" >
+        bf_Name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bfStudentid != null" >
+        #{bfStudentid,jdbcType=VARCHAR},
+      </if>
+      <if test="graName != null" >
+        #{graName,jdbcType=VARCHAR},
+      </if>
+      <if test="claName != null" >
+        #{claName,jdbcType=VARCHAR},
+      </if>
+      <if test="bfSex != null" >
+        #{bfSex,jdbcType=VARCHAR},
+      </if>
+      <if test="bfName != null" >
+        #{bfName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clt.domain.Connect" >
+    update df_connect
+    <set >
+      <if test="graName != null" >
+        gra_Name = #{graName,jdbcType=VARCHAR},
+      </if>
+      <if test="claName != null" >
+        cla_Name = #{claName,jdbcType=VARCHAR},
+      </if>
+      <if test="bfSex != null" >
+        bf_sex = #{bfSex,jdbcType=VARCHAR},
+      </if>
+      <if test="bfName != null" >
+        bf_Name = #{bfName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bf_StudentID = #{bfStudentid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clt.domain.Connect" >
+    update df_connect
+    set gra_Name = #{graName,jdbcType=VARCHAR},
+      cla_Name = #{claName,jdbcType=VARCHAR},
+      bf_sex = #{bfSex,jdbcType=VARCHAR},
+      bf_Name = #{bfName,jdbcType=VARCHAR}
+    where bf_StudentID = #{bfStudentid,jdbcType=VARCHAR}
+  </update>
+</mapper>

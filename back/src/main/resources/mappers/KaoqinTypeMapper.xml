@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clt.dao.KaoqinTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.clt.domain.KaoqinType" >
+    <constructor >
+      <idArg column="controler_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="controler_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="control_task_order_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="control_task_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    controler_id, controler_name, control_task_order_id, control_task_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kaoqintype
+    where controler_id = #{controlerId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kaoqintype
+    where controler_id = #{controlerId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.clt.domain.KaoqinType" >
+    insert into kaoqintype (controler_id, controler_name, control_task_order_id, 
+      control_task_name)
+    values (#{controlerId,jdbcType=VARCHAR}, #{controlerName,jdbcType=VARCHAR}, #{controlTaskOrderId,jdbcType=VARCHAR}, 
+      #{controlTaskName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.clt.domain.KaoqinType" >
+    insert into kaoqintype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="controlerId != null" >
+        controler_id,
+      </if>
+      <if test="controlerName != null" >
+        controler_name,
+      </if>
+      <if test="controlTaskOrderId != null" >
+        control_task_order_id,
+      </if>
+      <if test="controlTaskName != null" >
+        control_task_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="controlerId != null" >
+        #{controlerId,jdbcType=VARCHAR},
+      </if>
+      <if test="controlerName != null" >
+        #{controlerName,jdbcType=VARCHAR},
+      </if>
+      <if test="controlTaskOrderId != null" >
+        #{controlTaskOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="controlTaskName != null" >
+        #{controlTaskName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clt.domain.KaoqinType" >
+    update kaoqintype
+    <set >
+      <if test="controlerName != null" >
+        controler_name = #{controlerName,jdbcType=VARCHAR},
+      </if>
+      <if test="controlTaskOrderId != null" >
+        control_task_order_id = #{controlTaskOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="controlTaskName != null" >
+        control_task_name = #{controlTaskName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where controler_id = #{controlerId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clt.domain.KaoqinType" >
+    update kaoqintype
+    set controler_name = #{controlerName,jdbcType=VARCHAR},
+      control_task_order_id = #{controlTaskOrderId,jdbcType=VARCHAR},
+      control_task_name = #{controlTaskName,jdbcType=VARCHAR}
+    where controler_id = #{controlerId,jdbcType=VARCHAR}
+  </update>
+</mapper>

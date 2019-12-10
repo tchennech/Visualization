@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clt.dao.StudentTeacherMapper" >
+  <resultMap id="BaseResultMap" type="com.clt.domain.StudentTeacher" >
+    <constructor >
+      <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bf_StudentID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bf_Name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bf_sex" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bf_nation" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bf_BornDate" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cla_Name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bf_NativePlace" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Bf_ResidenceType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bf_policy" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cla_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cla_term" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bf_zhusu" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bf_leaveSchool" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bf_qinshihao" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="gra_Name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sub_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sub_Name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bas_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bas_Name" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, bf_StudentID, bf_Name, bf_sex, bf_nation, bf_BornDate, cla_Name, bf_NativePlace, 
+    Bf_ResidenceType, bf_policy, cla_id, cla_term, bf_zhusu, bf_leaveSchool, bf_qinshihao, 
+    gra_Name, sub_id, sub_Name, bas_id, bas_Name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from student_teacher
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from student_teacher
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.clt.domain.StudentTeacher" >
+    insert into student_teacher (id, bf_StudentID, bf_Name, 
+      bf_sex, bf_nation, bf_BornDate, 
+      cla_Name, bf_NativePlace, Bf_ResidenceType, 
+      bf_policy, cla_id, cla_term, 
+      bf_zhusu, bf_leaveSchool, bf_qinshihao, 
+      gra_Name, sub_id, sub_Name, 
+      bas_id, bas_Name)
+    values (#{id,jdbcType=VARCHAR}, #{bfStudentid,jdbcType=VARCHAR}, #{bfName,jdbcType=VARCHAR}, 
+      #{bfSex,jdbcType=VARCHAR}, #{bfNation,jdbcType=VARCHAR}, #{bfBorndate,jdbcType=VARCHAR}, 
+      #{claName,jdbcType=VARCHAR}, #{bfNativeplace,jdbcType=VARCHAR}, #{bfResidencetype,jdbcType=VARCHAR}, 
+      #{bfPolicy,jdbcType=VARCHAR}, #{claId,jdbcType=VARCHAR}, #{claTerm,jdbcType=VARCHAR}, 
+      #{bfZhusu,jdbcType=VARCHAR}, #{bfLeaveschool,jdbcType=VARCHAR}, #{bfQinshihao,jdbcType=VARCHAR}, 
+      #{graName,jdbcType=VARCHAR}, #{subId,jdbcType=VARCHAR}, #{subName,jdbcType=VARCHAR}, 
+      #{basId,jdbcType=VARCHAR}, #{basName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.clt.domain.StudentTeacher" >
+    insert into student_teacher
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="bfStudentid != null" >
+        bf_StudentID,
+      </if>
+      <if test="bfName != null" >
+        bf_Name,
+      </if>
+      <if test="bfSex != null" >
+        bf_sex,
+      </if>
+      <if test="bfNation != null" >
+        bf_nation,
+      </if>
+      <if test="bfBorndate != null" >
+        bf_BornDate,
+      </if>
+      <if test="claName != null" >
+        cla_Name,
+      </if>
+      <if test="bfNativeplace != null" >
+        bf_NativePlace,
+      </if>
+      <if test="bfResidencetype != null" >
+        Bf_ResidenceType,
+      </if>
+      <if test="bfPolicy != null" >
+        bf_policy,
+      </if>
+      <if test="claId != null" >
+        cla_id,
+      </if>
+      <if test="claTerm != null" >
+        cla_term,
+      </if>
+      <if test="bfZhusu != null" >
+        bf_zhusu,
+      </if>
+      <if test="bfLeaveschool != null" >
+        bf_leaveSchool,
+      </if>
+      <if test="bfQinshihao != null" >
+        bf_qinshihao,
+      </if>
+      <if test="graName != null" >
+        gra_Name,
+      </if>
+      <if test="subId != null" >
+        sub_id,
+      </if>
+      <if test="subName != null" >
+        sub_Name,
+      </if>
+      <if test="basId != null" >
+        bas_id,
+      </if>
+      <if test="basName != null" >
+        bas_Name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="bfStudentid != null" >
+        #{bfStudentid,jdbcType=VARCHAR},
+      </if>
+      <if test="bfName != null" >
+        #{bfName,jdbcType=VARCHAR},
+      </if>
+      <if test="bfSex != null" >
+        #{bfSex,jdbcType=VARCHAR},
+      </if>
+      <if test="bfNation != null" >
+        #{bfNation,jdbcType=VARCHAR},
+      </if>
+      <if test="bfBorndate != null" >
+        #{bfBorndate,jdbcType=VARCHAR},
+      </if>
+      <if test="claName != null" >
+        #{claName,jdbcType=VARCHAR},
+      </if>
+      <if test="bfNativeplace != null" >
+        #{bfNativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="bfResidencetype != null" >
+        #{bfResidencetype,jdbcType=VARCHAR},
+      </if>
+      <if test="bfPolicy != null" >
+        #{bfPolicy,jdbcType=VARCHAR},
+      </if>
+      <if test="claId != null" >
+        #{claId,jdbcType=VARCHAR},
+      </if>
+      <if test="claTerm != null" >
+        #{claTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="bfZhusu != null" >
+        #{bfZhusu,jdbcType=VARCHAR},
+      </if>
+      <if test="bfLeaveschool != null" >
+        #{bfLeaveschool,jdbcType=VARCHAR},
+      </if>
+      <if test="bfQinshihao != null" >
+        #{bfQinshihao,jdbcType=VARCHAR},
+      </if>
+      <if test="graName != null" >
+        #{graName,jdbcType=VARCHAR},
+      </if>
+      <if test="subId != null" >
+        #{subId,jdbcType=VARCHAR},
+      </if>
+      <if test="subName != null" >
+        #{subName,jdbcType=VARCHAR},
+      </if>
+      <if test="basId != null" >
+        #{basId,jdbcType=VARCHAR},
+      </if>
+      <if test="basName != null" >
+        #{basName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clt.domain.StudentTeacher" >
+    update student_teacher
+    <set >
+      <if test="bfStudentid != null" >
+        bf_StudentID = #{bfStudentid,jdbcType=VARCHAR},
+      </if>
+      <if test="bfName != null" >
+        bf_Name = #{bfName,jdbcType=VARCHAR},
+      </if>
+      <if test="bfSex != null" >
+        bf_sex = #{bfSex,jdbcType=VARCHAR},
+      </if>
+      <if test="bfNation != null" >
+        bf_nation = #{bfNation,jdbcType=VARCHAR},
+      </if>
+      <if test="bfBorndate != null" >
+        bf_BornDate = #{bfBorndate,jdbcType=VARCHAR},
+      </if>
+      <if test="claName != null" >
+        cla_Name = #{claName,jdbcType=VARCHAR},
+      </if>
+      <if test="bfNativeplace != null" >
+        bf_NativePlace = #{bfNativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="bfResidencetype != null" >
+        Bf_ResidenceType = #{bfResidencetype,jdbcType=VARCHAR},
+      </if>
+      <if test="bfPolicy != null" >
+        bf_policy = #{bfPolicy,jdbcType=VARCHAR},
+      </if>
+      <if test="claId != null" >
+        cla_id = #{claId,jdbcType=VARCHAR},
+      </if>
+      <if test="claTerm != null" >
+        cla_term = #{claTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="bfZhusu != null" >
+        bf_zhusu = #{bfZhusu,jdbcType=VARCHAR},
+      </if>
+      <if test="bfLeaveschool != null" >
+        bf_leaveSchool = #{bfLeaveschool,jdbcType=VARCHAR},
+      </if>
+      <if test="bfQinshihao != null" >
+        bf_qinshihao = #{bfQinshihao,jdbcType=VARCHAR},
+      </if>
+      <if test="graName != null" >
+        gra_Name = #{graName,jdbcType=VARCHAR},
+      </if>
+      <if test="subId != null" >
+        sub_id = #{subId,jdbcType=VARCHAR},
+      </if>
+      <if test="subName != null" >
+        sub_Name = #{subName,jdbcType=VARCHAR},
+      </if>
+      <if test="basId != null" >
+        bas_id = #{basId,jdbcType=VARCHAR},
+      </if>
+      <if test="basName != null" >
+        bas_Name = #{basName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clt.domain.StudentTeacher" >
+    update student_teacher
+    set bf_StudentID = #{bfStudentid,jdbcType=VARCHAR},
+      bf_Name = #{bfName,jdbcType=VARCHAR},
+      bf_sex = #{bfSex,jdbcType=VARCHAR},
+      bf_nation = #{bfNation,jdbcType=VARCHAR},
+      bf_BornDate = #{bfBorndate,jdbcType=VARCHAR},
+      cla_Name = #{claName,jdbcType=VARCHAR},
+      bf_NativePlace = #{bfNativeplace,jdbcType=VARCHAR},
+      Bf_ResidenceType = #{bfResidencetype,jdbcType=VARCHAR},
+      bf_policy = #{bfPolicy,jdbcType=VARCHAR},
+      cla_id = #{claId,jdbcType=VARCHAR},
+      cla_term = #{claTerm,jdbcType=VARCHAR},
+      bf_zhusu = #{bfZhusu,jdbcType=VARCHAR},
+      bf_leaveSchool = #{bfLeaveschool,jdbcType=VARCHAR},
+      bf_qinshihao = #{bfQinshihao,jdbcType=VARCHAR},
+      gra_Name = #{graName,jdbcType=VARCHAR},
+      sub_id = #{subId,jdbcType=VARCHAR},
+      sub_Name = #{subName,jdbcType=VARCHAR},
+      bas_id = #{basId,jdbcType=VARCHAR},
+      bas_Name = #{basName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

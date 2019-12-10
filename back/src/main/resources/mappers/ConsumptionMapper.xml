@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clt.dao.ConsumptionMapper" >
+  <resultMap id="BaseResultMap" type="com.clt.domain.Consumption" >
+    <constructor >
+      <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="DealTime" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="MonDeal" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bf_StudentID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="AccName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PerSex" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Year" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Month" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Day" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Hour" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Weekday" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="start_end" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, DealTime, MonDeal, bf_StudentID, AccName, PerSex, Year, Month, Day, Hour, Weekday, 
+    start_end
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from 72_consumption
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from 72_consumption
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.clt.domain.Consumption" >
+    insert into 72_consumption (id, DealTime, MonDeal, 
+      bf_StudentID, AccName, PerSex, 
+      Year, Month, Day, Hour, 
+      Weekday, start_end)
+    values (#{id,jdbcType=VARCHAR}, #{dealtime,jdbcType=VARCHAR}, #{mondeal,jdbcType=VARCHAR}, 
+      #{bfStudentid,jdbcType=VARCHAR}, #{accname,jdbcType=VARCHAR}, #{persex,jdbcType=VARCHAR}, 
+      #{year,jdbcType=VARCHAR}, #{month,jdbcType=VARCHAR}, #{day,jdbcType=VARCHAR}, #{hour,jdbcType=VARCHAR}, 
+      #{weekday,jdbcType=VARCHAR}, #{startEnd,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.clt.domain.Consumption" >
+    insert into 72_consumption
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dealtime != null" >
+        DealTime,
+      </if>
+      <if test="mondeal != null" >
+        MonDeal,
+      </if>
+      <if test="bfStudentid != null" >
+        bf_StudentID,
+      </if>
+      <if test="accname != null" >
+        AccName,
+      </if>
+      <if test="persex != null" >
+        PerSex,
+      </if>
+      <if test="year != null" >
+        Year,
+      </if>
+      <if test="month != null" >
+        Month,
+      </if>
+      <if test="day != null" >
+        Day,
+      </if>
+      <if test="hour != null" >
+        Hour,
+      </if>
+      <if test="weekday != null" >
+        Weekday,
+      </if>
+      <if test="startEnd != null" >
+        start_end,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="dealtime != null" >
+        #{dealtime,jdbcType=VARCHAR},
+      </if>
+      <if test="mondeal != null" >
+        #{mondeal,jdbcType=VARCHAR},
+      </if>
+      <if test="bfStudentid != null" >
+        #{bfStudentid,jdbcType=VARCHAR},
+      </if>
+      <if test="accname != null" >
+        #{accname,jdbcType=VARCHAR},
+      </if>
+      <if test="persex != null" >
+        #{persex,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null" >
+        #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="hour != null" >
+        #{hour,jdbcType=VARCHAR},
+      </if>
+      <if test="weekday != null" >
+        #{weekday,jdbcType=VARCHAR},
+      </if>
+      <if test="startEnd != null" >
+        #{startEnd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clt.domain.Consumption" >
+    update 72_consumption
+    <set >
+      <if test="dealtime != null" >
+        DealTime = #{dealtime,jdbcType=VARCHAR},
+      </if>
+      <if test="mondeal != null" >
+        MonDeal = #{mondeal,jdbcType=VARCHAR},
+      </if>
+      <if test="bfStudentid != null" >
+        bf_StudentID = #{bfStudentid,jdbcType=VARCHAR},
+      </if>
+      <if test="accname != null" >
+        AccName = #{accname,jdbcType=VARCHAR},
+      </if>
+      <if test="persex != null" >
+        PerSex = #{persex,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        Year = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        Month = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null" >
+        Day = #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="hour != null" >
+        Hour = #{hour,jdbcType=VARCHAR},
+      </if>
+      <if test="weekday != null" >
+        Weekday = #{weekday,jdbcType=VARCHAR},
+      </if>
+      <if test="startEnd != null" >
+        start_end = #{startEnd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clt.domain.Consumption" >
+    update 72_consumption
+    set DealTime = #{dealtime,jdbcType=VARCHAR},
+      MonDeal = #{mondeal,jdbcType=VARCHAR},
+      bf_StudentID = #{bfStudentid,jdbcType=VARCHAR},
+      AccName = #{accname,jdbcType=VARCHAR},
+      PerSex = #{persex,jdbcType=VARCHAR},
+      Year = #{year,jdbcType=VARCHAR},
+      Month = #{month,jdbcType=VARCHAR},
+      Day = #{day,jdbcType=VARCHAR},
+      Hour = #{hour,jdbcType=VARCHAR},
+      Weekday = #{weekday,jdbcType=VARCHAR},
+      start_end = #{startEnd,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

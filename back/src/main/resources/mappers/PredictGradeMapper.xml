@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clt.dao.PredictGradeMapper" >
+  <resultMap id="BaseResultMap" type="com.clt.domain.PredictGrade" >
+    <constructor >
+      <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="学期" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="未来学期" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="年级" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="班级" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="考试类型" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="学号" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="科目" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="单科分数" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Z分数" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="T分数" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="等第" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="单科班级排名" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="单科年级排名" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="未来分数" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, 学期, 未来学期, 年级, 班级, 考试类型, 学号, 科目, 单科分数, Z分数, T分数, 等第, 单科班级排名, 单科年级排名, 未来分数
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from df56_predict_chengji
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from df56_predict_chengji
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.clt.domain.PredictGrade" >
+    insert into df56_predict_chengji (id, 学期, 未来学期, 
+      年级, 班级, 考试类型, 学号, 
+      科目, 单科分数, Z分数, T分数, 
+      等第, 单科班级排名, 单科年级排名, 
+      未来分数)
+    values (#{id,jdbcType=VARCHAR}, #{学期,jdbcType=VARCHAR}, #{未来学期,jdbcType=VARCHAR}, 
+      #{年级,jdbcType=VARCHAR}, #{班级,jdbcType=VARCHAR}, #{考试类型,jdbcType=VARCHAR}, #{学号,jdbcType=VARCHAR}, 
+      #{科目,jdbcType=VARCHAR}, #{单科分数,jdbcType=VARCHAR}, #{z分数,jdbcType=VARCHAR}, #{t分数,jdbcType=VARCHAR}, 
+      #{等第,jdbcType=VARCHAR}, #{单科班级排名,jdbcType=VARCHAR}, #{单科年级排名,jdbcType=VARCHAR}, 
+      #{未来分数,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.clt.domain.PredictGrade" >
+    insert into df56_predict_chengji
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="学期 != null" >
+        学期,
+      </if>
+      <if test="未来学期 != null" >
+        未来学期,
+      </if>
+      <if test="年级 != null" >
+        年级,
+      </if>
+      <if test="班级 != null" >
+        班级,
+      </if>
+      <if test="考试类型 != null" >
+        考试类型,
+      </if>
+      <if test="学号 != null" >
+        学号,
+      </if>
+      <if test="科目 != null" >
+        科目,
+      </if>
+      <if test="单科分数 != null" >
+        单科分数,
+      </if>
+      <if test="z分数 != null" >
+        Z分数,
+      </if>
+      <if test="t分数 != null" >
+        T分数,
+      </if>
+      <if test="等第 != null" >
+        等第,
+      </if>
+      <if test="单科班级排名 != null" >
+        单科班级排名,
+      </if>
+      <if test="单科年级排名 != null" >
+        单科年级排名,
+      </if>
+      <if test="未来分数 != null" >
+        未来分数,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="学期 != null" >
+        #{学期,jdbcType=VARCHAR},
+      </if>
+      <if test="未来学期 != null" >
+        #{未来学期,jdbcType=VARCHAR},
+      </if>
+      <if test="年级 != null" >
+        #{年级,jdbcType=VARCHAR},
+      </if>
+      <if test="班级 != null" >
+        #{班级,jdbcType=VARCHAR},
+      </if>
+      <if test="考试类型 != null" >
+        #{考试类型,jdbcType=VARCHAR},
+      </if>
+      <if test="学号 != null" >
+        #{学号,jdbcType=VARCHAR},
+      </if>
+      <if test="科目 != null" >
+        #{科目,jdbcType=VARCHAR},
+      </if>
+      <if test="单科分数 != null" >
+        #{单科分数,jdbcType=VARCHAR},
+      </if>
+      <if test="z分数 != null" >
+        #{z分数,jdbcType=VARCHAR},
+      </if>
+      <if test="t分数 != null" >
+        #{t分数,jdbcType=VARCHAR},
+      </if>
+      <if test="等第 != null" >
+        #{等第,jdbcType=VARCHAR},
+      </if>
+      <if test="单科班级排名 != null" >
+        #{单科班级排名,jdbcType=VARCHAR},
+      </if>
+      <if test="单科年级排名 != null" >
+        #{单科年级排名,jdbcType=VARCHAR},
+      </if>
+      <if test="未来分数 != null" >
+        #{未来分数,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clt.domain.PredictGrade" >
+    update df56_predict_chengji
+    <set >
+      <if test="学期 != null" >
+        学期 = #{学期,jdbcType=VARCHAR},
+      </if>
+      <if test="未来学期 != null" >
+        未来学期 = #{未来学期,jdbcType=VARCHAR},
+      </if>
+      <if test="年级 != null" >
+        年级 = #{年级,jdbcType=VARCHAR},
+      </if>
+      <if test="班级 != null" >
+        班级 = #{班级,jdbcType=VARCHAR},
+      </if>
+      <if test="考试类型 != null" >
+        考试类型 = #{考试类型,jdbcType=VARCHAR},
+      </if>
+      <if test="学号 != null" >
+        学号 = #{学号,jdbcType=VARCHAR},
+      </if>
+      <if test="科目 != null" >
+        科目 = #{科目,jdbcType=VARCHAR},
+      </if>
+      <if test="单科分数 != null" >
+        单科分数 = #{单科分数,jdbcType=VARCHAR},
+      </if>
+      <if test="z分数 != null" >
+        Z分数 = #{z分数,jdbcType=VARCHAR},
+      </if>
+      <if test="t分数 != null" >
+        T分数 = #{t分数,jdbcType=VARCHAR},
+      </if>
+      <if test="等第 != null" >
+        等第 = #{等第,jdbcType=VARCHAR},
+      </if>
+      <if test="单科班级排名 != null" >
+        单科班级排名 = #{单科班级排名,jdbcType=VARCHAR},
+      </if>
+      <if test="单科年级排名 != null" >
+        单科年级排名 = #{单科年级排名,jdbcType=VARCHAR},
+      </if>
+      <if test="未来分数 != null" >
+        未来分数 = #{未来分数,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clt.domain.PredictGrade" >
+    update df56_predict_chengji
+    set 学期 = #{学期,jdbcType=VARCHAR},
+      未来学期 = #{未来学期,jdbcType=VARCHAR},
+      年级 = #{年级,jdbcType=VARCHAR},
+      班级 = #{班级,jdbcType=VARCHAR},
+      考试类型 = #{考试类型,jdbcType=VARCHAR},
+      学号 = #{学号,jdbcType=VARCHAR},
+      科目 = #{科目,jdbcType=VARCHAR},
+      单科分数 = #{单科分数,jdbcType=VARCHAR},
+      Z分数 = #{z分数,jdbcType=VARCHAR},
+      T分数 = #{t分数,jdbcType=VARCHAR},
+      等第 = #{等第,jdbcType=VARCHAR},
+      单科班级排名 = #{单科班级排名,jdbcType=VARCHAR},
+      单科年级排名 = #{单科年级排名,jdbcType=VARCHAR},
+      未来分数 = #{未来分数,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

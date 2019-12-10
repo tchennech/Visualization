@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clt.dao.GradeMapper" >
+  <resultMap id="BaseResultMap" type="com.clt.domain.Grade" >
+    <constructor >
+      <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bf_StudentID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="gra_Name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cla_Name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bf_sex" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bf_Name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="mes_TestID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="exam_number" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="exam_numname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="mes_sub_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="mes_sub_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="exam_term" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="exam_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="exam_sdate" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="mes_Score" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="mes_Z_Score" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="mes_T_Score" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="mes_dengdi" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="EXAM_KIND_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, bf_StudentID, gra_Name, cla_Name, bf_sex, bf_Name, mes_TestID, exam_number, exam_numname, 
+    mes_sub_id, mes_sub_name, exam_term, exam_type, exam_sdate, mes_Score, mes_Z_Score, 
+    mes_T_Score, mes_dengdi, EXAM_KIND_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from df56_chengji
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from df56_chengji
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.clt.domain.Grade" >
+    insert into df56_chengji (id, bf_StudentID, gra_Name, 
+      cla_Name, bf_sex, bf_Name, 
+      mes_TestID, exam_number, exam_numname, 
+      mes_sub_id, mes_sub_name, exam_term, 
+      exam_type, exam_sdate, mes_Score, 
+      mes_Z_Score, mes_T_Score, mes_dengdi, 
+      EXAM_KIND_NAME)
+    values (#{id,jdbcType=VARCHAR}, #{bfStudentid,jdbcType=VARCHAR}, #{graName,jdbcType=VARCHAR}, 
+      #{claName,jdbcType=VARCHAR}, #{bfSex,jdbcType=VARCHAR}, #{bfName,jdbcType=VARCHAR}, 
+      #{mesTestid,jdbcType=VARCHAR}, #{examNumber,jdbcType=VARCHAR}, #{examNumname,jdbcType=VARCHAR}, 
+      #{mesSubId,jdbcType=VARCHAR}, #{mesSubName,jdbcType=VARCHAR}, #{examTerm,jdbcType=VARCHAR}, 
+      #{examType,jdbcType=VARCHAR}, #{examSdate,jdbcType=VARCHAR}, #{mesScore,jdbcType=VARCHAR}, 
+      #{mesZScore,jdbcType=VARCHAR}, #{mesTScore,jdbcType=VARCHAR}, #{mesDengdi,jdbcType=VARCHAR}, 
+      #{examKindName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.clt.domain.Grade" >
+    insert into df56_chengji
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="bfStudentid != null" >
+        bf_StudentID,
+      </if>
+      <if test="graName != null" >
+        gra_Name,
+      </if>
+      <if test="claName != null" >
+        cla_Name,
+      </if>
+      <if test="bfSex != null" >
+        bf_sex,
+      </if>
+      <if test="bfName != null" >
+        bf_Name,
+      </if>
+      <if test="mesTestid != null" >
+        mes_TestID,
+      </if>
+      <if test="examNumber != null" >
+        exam_number,
+      </if>
+      <if test="examNumname != null" >
+        exam_numname,
+      </if>
+      <if test="mesSubId != null" >
+        mes_sub_id,
+      </if>
+      <if test="mesSubName != null" >
+        mes_sub_name,
+      </if>
+      <if test="examTerm != null" >
+        exam_term,
+      </if>
+      <if test="examType != null" >
+        exam_type,
+      </if>
+      <if test="examSdate != null" >
+        exam_sdate,
+      </if>
+      <if test="mesScore != null" >
+        mes_Score,
+      </if>
+      <if test="mesZScore != null" >
+        mes_Z_Score,
+      </if>
+      <if test="mesTScore != null" >
+        mes_T_Score,
+      </if>
+      <if test="mesDengdi != null" >
+        mes_dengdi,
+      </if>
+      <if test="examKindName != null" >
+        EXAM_KIND_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="bfStudentid != null" >
+        #{bfStudentid,jdbcType=VARCHAR},
+      </if>
+      <if test="graName != null" >
+        #{graName,jdbcType=VARCHAR},
+      </if>
+      <if test="claName != null" >
+        #{claName,jdbcType=VARCHAR},
+      </if>
+      <if test="bfSex != null" >
+        #{bfSex,jdbcType=VARCHAR},
+      </if>
+      <if test="bfName != null" >
+        #{bfName,jdbcType=VARCHAR},
+      </if>
+      <if test="mesTestid != null" >
+        #{mesTestid,jdbcType=VARCHAR},
+      </if>
+      <if test="examNumber != null" >
+        #{examNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="examNumname != null" >
+        #{examNumname,jdbcType=VARCHAR},
+      </if>
+      <if test="mesSubId != null" >
+        #{mesSubId,jdbcType=VARCHAR},
+      </if>
+      <if test="mesSubName != null" >
+        #{mesSubName,jdbcType=VARCHAR},
+      </if>
+      <if test="examTerm != null" >
+        #{examTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="examType != null" >
+        #{examType,jdbcType=VARCHAR},
+      </if>
+      <if test="examSdate != null" >
+        #{examSdate,jdbcType=VARCHAR},
+      </if>
+      <if test="mesScore != null" >
+        #{mesScore,jdbcType=VARCHAR},
+      </if>
+      <if test="mesZScore != null" >
+        #{mesZScore,jdbcType=VARCHAR},
+      </if>
+      <if test="mesTScore != null" >
+        #{mesTScore,jdbcType=VARCHAR},
+      </if>
+      <if test="mesDengdi != null" >
+        #{mesDengdi,jdbcType=VARCHAR},
+      </if>
+      <if test="examKindName != null" >
+        #{examKindName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clt.domain.Grade" >
+    update df56_chengji
+    <set >
+      <if test="bfStudentid != null" >
+        bf_StudentID = #{bfStudentid,jdbcType=VARCHAR},
+      </if>
+      <if test="graName != null" >
+        gra_Name = #{graName,jdbcType=VARCHAR},
+      </if>
+      <if test="claName != null" >
+        cla_Name = #{claName,jdbcType=VARCHAR},
+      </if>
+      <if test="bfSex != null" >
+        bf_sex = #{bfSex,jdbcType=VARCHAR},
+      </if>
+      <if test="bfName != null" >
+        bf_Name = #{bfName,jdbcType=VARCHAR},
+      </if>
+      <if test="mesTestid != null" >
+        mes_TestID = #{mesTestid,jdbcType=VARCHAR},
+      </if>
+      <if test="examNumber != null" >
+        exam_number = #{examNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="examNumname != null" >
+        exam_numname = #{examNumname,jdbcType=VARCHAR},
+      </if>
+      <if test="mesSubId != null" >
+        mes_sub_id = #{mesSubId,jdbcType=VARCHAR},
+      </if>
+      <if test="mesSubName != null" >
+        mes_sub_name = #{mesSubName,jdbcType=VARCHAR},
+      </if>
+      <if test="examTerm != null" >
+        exam_term = #{examTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="examType != null" >
+        exam_type = #{examType,jdbcType=VARCHAR},
+      </if>
+      <if test="examSdate != null" >
+        exam_sdate = #{examSdate,jdbcType=VARCHAR},
+      </if>
+      <if test="mesScore != null" >
+        mes_Score = #{mesScore,jdbcType=VARCHAR},
+      </if>
+      <if test="mesZScore != null" >
+        mes_Z_Score = #{mesZScore,jdbcType=VARCHAR},
+      </if>
+      <if test="mesTScore != null" >
+        mes_T_Score = #{mesTScore,jdbcType=VARCHAR},
+      </if>
+      <if test="mesDengdi != null" >
+        mes_dengdi = #{mesDengdi,jdbcType=VARCHAR},
+      </if>
+      <if test="examKindName != null" >
+        EXAM_KIND_NAME = #{examKindName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clt.domain.Grade" >
+    update df56_chengji
+    set bf_StudentID = #{bfStudentid,jdbcType=VARCHAR},
+      gra_Name = #{graName,jdbcType=VARCHAR},
+      cla_Name = #{claName,jdbcType=VARCHAR},
+      bf_sex = #{bfSex,jdbcType=VARCHAR},
+      bf_Name = #{bfName,jdbcType=VARCHAR},
+      mes_TestID = #{mesTestid,jdbcType=VARCHAR},
+      exam_number = #{examNumber,jdbcType=VARCHAR},
+      exam_numname = #{examNumname,jdbcType=VARCHAR},
+      mes_sub_id = #{mesSubId,jdbcType=VARCHAR},
+      mes_sub_name = #{mesSubName,jdbcType=VARCHAR},
+      exam_term = #{examTerm,jdbcType=VARCHAR},
+      exam_type = #{examType,jdbcType=VARCHAR},
+      exam_sdate = #{examSdate,jdbcType=VARCHAR},
+      mes_Score = #{mesScore,jdbcType=VARCHAR},
+      mes_Z_Score = #{mesZScore,jdbcType=VARCHAR},
+      mes_T_Score = #{mesTScore,jdbcType=VARCHAR},
+      mes_dengdi = #{mesDengdi,jdbcType=VARCHAR},
+      EXAM_KIND_NAME = #{examKindName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
