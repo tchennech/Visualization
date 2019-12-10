@@ -1,28 +1,20 @@
 <template>
   <!-- 导航 -->
-  <el-menu
-    :default-active="activeIndex"
-    class="el-menu-demo"
-    active-text-color="#4D7BE2"
-    mode="horizontal"
-    id="he"
-    @select="handleSelect"
-  >
-    <el-row
-      type="flex"
-      justify="space-between"
-    >
-      <el-col
-        :span="4"
-        class="hidden-sm-and-down parent"
-      >
-        <img
-          id="headImg"
-          class="child"
-          src="../assets/img/ghead.png"
-        />
+  <el-menu :default-active="activeIndex"
+           class="el-menu-demo"
+           active-text-color="#4D7BE2"
+           mode="horizontal"
+           id="he"
+           @select="handleSelect">
+    <el-row type="flex"
+            justify="space-between">
+      <el-col :span="3"
+              class="hidden-sm-and-down parent">
+        <img id="headImg"
+             class="child"
+             src="../assets/img/ghead.png" />
       </el-col>
-      <el-col :span="4">
+      <el-col :span="2">
         <div style="position:absolute;top:30%;">
           <span style="color:#909399;margin-right:15px">|</span>
           XX学校可视化平台
@@ -45,15 +37,16 @@
       <el-col :span="3">
         <el-menu-item index="4">考勤</el-menu-item>
       </el-col>
+      <el-col :span="3">
+        <el-menu-item index="4">消费</el-menu-item>
+      </el-col>
       <el-col :span="4">
         <el-menu-item index="4">
           <span>{{date}}</span>
           <span class="rightParts">{{loginUser.userName}}, 你好</span>
           <span class="rightParts">
-            <el-button
-              type="text"
-              @click="logout"
-            >注销</el-button>
+            <el-button type="text"
+                       @click="logout">注销</el-button>
           </span>
         </el-menu-item>
       </el-col>
@@ -62,35 +55,35 @@
 </template>
 
 <script>
-import "../assets/css/headLeader.css";
+import '../assets/css/headLeader.css'
 export default {
-  name: "gHead",
+  name: 'gHead',
   props: {
     activeIndex: {
       type: String,
       default: '1'
     }
   },
-  data() {
+  data () {
     return {
-      date: "",
+      date: '',
       loginUser: {}
-    };
+    }
   },
-  mounted() {
+  mounted () {
     this.date = new Date().toLocaleDateString()
     this.loginUser = this.getUser()
   },
   methods: {
-    logout() {
-      this.delCookie("user")
+    logout () {
+      this.delCookie('user')
       this.$router.push('/login')
     },
-    handleSelect(key, keyPath) {
-      if(key === '1') {
+    handleSelect (key, keyPath) {
+      if (key === '1') {
         this.$router.push('/')
       }
     }
   }
-};
+}
 </script>

@@ -1,0 +1,34 @@
+.oddDiv {
+  background-color: #E6ECED;
+  text-align:center;
+}
+.evenDiv {
+  background-color: #56B7B3;
+}
+.center {
+  left:0;
+  top:0;
+  right:0;
+  bottom: 0;
+  margin: auto;
+}
+#teacherDis {
+  left:0;
+  top:0;
+  right:0;
+  bottom: 0;
+  margin: auto;
+}
+.middleConten {
+  width: 70%;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+.middleConten > .title {
+  padding-top: 10px;
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  text-align: left;
+  font-size: 20px;
+  height:40px;
+  color: #003f43;
+}
