@@ -7,13 +7,6 @@
   margin-bottom: 10px;
 }
 
-#message {
-  position: fixed;
-  right: 3%;
-  bottom: 10%;
-  z-index: 1;
-}
-
 .parent {
   position: relative;
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <gHead></gHead>
+    <gHead activeIndex='1'></gHead>
   </div>
 </template>
 
