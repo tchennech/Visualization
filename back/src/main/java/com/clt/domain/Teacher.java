@@ -30,7 +30,12 @@ public class Teacher {
         this.basId = basId;
         this.basName = basName;
     }
-
+    public Teacher(String subId, String subName, String basId, String basName) {
+        this.subId = subId;
+        this.subName = subName;
+        this.basId = basId;
+        this.basName = basName;
+    }
     public Teacher() {
         super();
     }

@@ -1,10 +1,18 @@
 .oddDiv {
-  background-color: #E6ECED;
+  background-color: rgb(227, 255, 253);
   text-align:center;
 }
 .evenDiv {
   background-color: #56B7B3;
 }
+#homeHeadBack {
+  background: url(../img/headBack.jpg);
+  background-size: 100% 100%;
+  padding: 0;
+}
+/* .el-col {
+  background-color: rgba(231, 216, 200, 0.2) !important;
+} */
 .center {
   left:0;
   top:0;
@@ -31,4 +39,7 @@
   font-size: 20px;
   height:40px;
   color: #003f43;
+}
+.el-main {
+  padding: 0 !important;
 }

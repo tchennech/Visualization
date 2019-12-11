@@ -2,12 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.clt.dao.TeacherMapper" >
   <resultMap id="BaseResultMap" type="com.clt.domain.Teacher" >
-    <constructor >
+    <constructor>
       <idArg column="t_id" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="term" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="cla_id" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="cla_Name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="gra_Name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sub_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sub_Name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bas_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bas_Name" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <resultMap id="BaseResultMap2" type="com.clt.domain.Teacher" >
+    <constructor>
       <arg column="sub_id" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="sub_Name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="bas_id" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -22,6 +30,11 @@
     <include refid="Base_Column_List" />
     from teacher
     where t_id = #{tId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap2">
+    select
+    DISTINCT sub_id, sub_Name,bas_id, bas_Name
+    from teacher
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from teacher
