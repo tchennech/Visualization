@@ -26,10 +26,7 @@
           </div>
         </div>
         <div class='evenDiv'>
-          <mapChart :name="'学生分布情况'"
-                    :id="mapData.id"
-                    :data="mapData.data">
-          </mapChart>
+          2
         </div>
       </el-main>
     </el-container>
@@ -39,14 +36,12 @@
 <script>
 import gHead from '@/components/head.vue'
 import barChart from '@/components/barChart.vue'
-import mapChart from '@/components/map.vue'
 import '../assets/css/home.css'
 
 export default {
   components: {
     gHead,
-    barChart,
-    mapChart
+    barChart
   },
   data () {
     return {
@@ -55,25 +50,6 @@ export default {
         id: 'teacherDis',
         data: [24, 24, 31, 9, 10, 7],
         xLabel: ['语文', '数学', '英语', '物理', '化学', '生物'],
-        flag: true
-      },
-      mapData: {
-        id: 'mapDis',
-        data: [
-          { name: '宁波', value: 9 },
-          { name: '温州', value: 12 },
-          { name: '安徽', value: 12 },
-          { name: '河南', value: 12 },
-          { name: '陕西', value: 14 },
-          { name: '台州', value: 15 },
-          { name: '福建', value: 112 },
-          { name: '辽宁', value: 123 },
-          { name: '山东', value: 43 },
-          { name: '江苏', value: 12 },
-          { name: '吉林', value: 14 },
-          { name: '甘肃', value: 123 },
-          { name: '浙江', value: 65 }
-        ],
         flag: false
       }
     }

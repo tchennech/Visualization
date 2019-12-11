@@ -3,7 +3,8 @@
   text-align:center;
 }
 .evenDiv {
-  background-color: #56B7B3;
+  /* background-color: #56B7B3; */
+  background-color: transparent;
 }
 #homeHeadBack {
   background: url(../img/headBack.jpg);
@@ -43,3 +44,11 @@
 .el-main {
   padding: 0 !important;
 }
+.clearfix:before,
+  .clearfix:after {
+    display: table;
+    content: "";
+  }
+  .clearfix:after {
+    clear: both
+  }
