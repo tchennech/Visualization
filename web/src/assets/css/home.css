@@ -3,8 +3,9 @@
   text-align:center;
 }
 .evenDiv {
-  /* background-color: #56B7B3; */
-  background-color: transparent;
+  background-color: rgb(155, 231, 236);
+  /* background-color: transparent; */
+  text-align:center;
 }
 #homeHeadBack {
   background: url(../img/headBack.jpg);

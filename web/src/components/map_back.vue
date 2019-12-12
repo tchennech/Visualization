@@ -6,7 +6,7 @@
 </template>
 <script>
 import echarts from 'echarts'
-import china from '../../static/china'
+import 'echarts/extension/bmap/bmap.js'
 export default {
   name: 'mapChart',
   props: {
@@ -20,11 +20,11 @@ export default {
     },
     width: {
       type: String,
-      default: '700px'
+      default: '1800px'
     },
     height: {
       type: String,
-      default: '500px'
+      default: '1800px'
     },
     data: {
       type: Array,
@@ -57,6 +57,7 @@ export default {
   },
   mounted () {
     this.initChart()
+    console.log(this.data)
   },
   beforeDestroy () {
     if (!this.chart) {
@@ -70,68 +71,63 @@ export default {
       this.chart = echarts.init(this.$refs.myEchart)
       // 把配置和数据放这里
       this.chart.setOption({
-        geo: {
-          map: 'china', // 地图类型为中国地图,要是世界那就是world,要是省市区：例如beijing、shanghai
-          itemStyle: { // 定义样式
-            normal: { // 普通状态下的样式
-              areaColor: '#F8EECA',
-              borderColor: '#000'
-            },
-            emphasis: { // 高亮状态下的样式
-              areaColor: '#e9fbf1'
-            }
-          }
-        },
-        backgroundColor: '#ffffff',
+        backgroundColor: 'transparent',
         title: {
           text: this.name,
           // subtext: '部分数据',
           left: 'center',
           textStyle: {
-            color: '#003f43'
+            color: '#fff'
           }
         },
         tooltip: {
-          trigger: 'item',
-          textStyle: {
-            align: 'left'
-          },
-          formatter: function (obj) {
-            return '<div style="border-bottom: 1px solid rgba(255,255,255,.3); font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">' +
-              obj.seriesName + ' ' +
-              '</div>' +
-              obj.name + '<br>' +
-              obj.value[0] + '人<br>'
+          trigger: 'item'
+        },
+        bmap: {
+          center: [105, 36],
+          zoom: 5,
+          roam: true,
+          mapStyle: {
+            // styleJson:
+            styleId: 'c687cf794e6cddb155b236f7ab88d8c6'
           }
         },
-        color: 'red',
         series: [{
           name: this.name,
           type: 'scatter',
-          coordinateSystem: 'geo',
-          data: this.convertData(this.data),
-          symbolSize: [20, 20],
-          symbol: 'pin',
+          coordinateSystem: 'bmap',
+          data: this.convertData(this.data.sort(function (a, b) {
+            return b.value - a.value
+          }).slice(0, 6)),
+          symbolSize: function (val) {
+            return val[2] / 10
+          },
+          label: {
+            normal: {
+              formatter: '{b}',
+              position: 'right',
+              show: false
+            },
+            emphasis: {
+              show: true
+            }
+          },
           itemStyle: {
             normal: {
               color: '#ddb926'
             }
           }
-        }],
-        // 添加视觉映射组件
-        visualMap: {
-          type: 'continuous', // 连续型
-          min: 0, // 值域最小值，必须参数
-          max: 130, // 值域最大值，必须参数
-          calculable: true, // 是否启用值域漫游
-          inRange: {
-            color: ['lightskyblue', 'yellow', 'orangered']
-            // 指定数值从低到高时的颜色变化
-          },
-          textStyle: {
-            color: '#fff' // 值域控件的文本颜色
-          }
-        }
+        }]
+      })
+      this.bmap = this.chart.getModel().getComponent('bmap').getBMap()
+      this.bmap.setMinZoom(3) // 设置地图最小缩放比例
+      this.bmap.setMaxZoom(12) // 设置地图最大缩放比例
+      this.bmap.addControl(new BMap.MapTypeControl()) // 不显示地图右上方的控件
+      // this.bmap.addControl(new BMap.ScaleControl({ anchor: BMAP_ANCHOR_BOTTOM_LEFT })) // 在左下角显示比例尺控件
+      const _this = this
+      // 监听地图比例缩放， 可以根据缩放等级控制某些图标的显示
+      this.bmap.addEventListener('zoomend', function () {
+        _this.mapZoom = _this.bmap.getZoom()
       })
     },
     convertData (data) {
@@ -145,6 +141,8 @@ export default {
           })
         }
       }
+      console.log('res')
+      console.log(res)
       return res
     }
   }

@@ -26,10 +26,24 @@
           </div>
         </div>
         <div class='evenDiv'>
-          <mapChart :name="'学生分布情况'"
-                    :id="mapData.id"
-                    :data="mapData.data">
-          </mapChart>
+          <div class='middleConten center'>
+            <el-card class="box-card">
+              <el-row>
+                <el-col :span='16'>
+                  <mapChart :name="'学生分布情况'"
+                            :id="mapData.id"
+                            :data="mapData.data">
+                  </mapChart>
+                </el-col>
+                <el-col :span='8'>
+                  <pieCHart :name="pieData.name"
+                            :id="pieData.id"
+                            :data="pieData.data">
+                  </pieCHart>
+                </el-col>
+              </el-row>
+            </el-card>
+          </div>
         </div>
       </el-main>
     </el-container>
@@ -40,13 +54,15 @@
 import gHead from '@/components/head.vue'
 import barChart from '@/components/barChart.vue'
 import mapChart from '@/components/map.vue'
+import pieCHart from '@/components/pieChart.vue'
 import '../assets/css/home.css'
 
 export default {
   components: {
     gHead,
     barChart,
-    mapChart
+    mapChart,
+    pieCHart
   },
   data () {
     return {
@@ -55,7 +71,7 @@ export default {
         id: 'teacherDis',
         data: [24, 24, 31, 9, 10, 7],
         xLabel: ['语文', '数学', '英语', '物理', '化学', '生物'],
-        flag: true
+        flag: false
       },
       mapData: {
         id: 'mapDis',
@@ -75,10 +91,27 @@ export default {
           { name: '浙江', value: 65 }
         ],
         flag: false
+      },
+      pieData: {
+        id: 'secDis',
+        name: '学生性别分布',
+        data: [
+          { value: 2,
+            name: '正常表层细胞',
+            itemStyle: {
+              color: this.colors[0]
+            } },
+          { value: 3,
+            name: '正常中底层细胞',
+            itemStyle: {
+              color: this.colors[1]
+            } }
+        ],
+        flag: false
       }
     }
   },
-  created () {
+  mounted () {
     this.user = this.getUser()
     this.getClassTeacherNum()
   },
@@ -87,7 +120,6 @@ export default {
       this.$http.post('/api/getallteacher.action').then(
         function (res) {
           let result = JSON.parse(JSON.parse(res.bodyText))
-          console.log(result)
           if (result.status === 1) {
             this.$message({
               message: '获取数据失败:' + result.msg,
@@ -96,7 +128,7 @@ export default {
             console.log('getClassTeacherNum Failed')
           } else {
             let data = JSON.parse(result.data)
-            console.log(data)
+            console.log(this.teaDisData)
             this.teaDisData.data = data.tNum
             this.teaDisData.xLabel = data.label
           }
@@ -108,7 +140,7 @@ export default {
           }
           this.$message.error('请求服务器时发生错误')
         }
-      )
+      ).bind(this)
     }
   }
 }
