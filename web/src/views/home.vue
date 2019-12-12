@@ -25,6 +25,7 @@
             </el-card>
           </div>
         </div>
+        
         <div class='evenDiv'>
           <div class='middleConten center'>
             <el-card class="box-card">
@@ -36,9 +37,13 @@
                   </mapChart>
                 </el-col>
                 <el-col :span='8'>
-                  <pieCHart :name="pieData.name"
-                            :id="pieData.id"
-                            :data="pieData.data">
+                  <pieCHart :name="pieSexData.name"
+                            :id="pieSexData.id"
+                            :data="pieSexData.data">
+                  </pieCHart>
+                  <pieCHart :name="piePolData.name"
+                            :id="piePolData.id"
+                            :data="piePolData.data">
                   </pieCHart>
                 </el-col>
               </el-row>
@@ -49,14 +54,12 @@
     </el-container>
   </div>
 </template>
-
 <script>
 import gHead from '@/components/head.vue'
 import barChart from '@/components/barChart.vue'
 import mapChart from '@/components/map.vue'
 import pieCHart from '@/components/pieChart.vue'
 import '../assets/css/home.css'
-
 export default {
   components: {
     gHead,
@@ -67,11 +70,12 @@ export default {
   data () {
     return {
       user: {},
+      tdata: 1,
       teaDisData: {
         id: 'teacherDis',
         data: [24, 24, 31, 9, 10, 7],
         xLabel: ['语文', '数学', '英语', '物理', '化学', '生物'],
-        flag: false
+        flag: true
       },
       mapData: {
         id: 'mapDis',
@@ -92,26 +96,27 @@ export default {
         ],
         flag: false
       },
-      pieData: {
-        id: 'secDis',
+      pieSexData: {
+        id: 'sexDis',
         name: '学生性别分布',
-        data: [
-          { value: 2,
-            name: '正常表层细胞',
-            itemStyle: {
-              color: this.colors[0]
-            } },
-          { value: 3,
-            name: '正常中底层细胞',
-            itemStyle: {
-              color: this.colors[1]
-            } }
-        ],
+        data: [{value:335, name:'男'},
+                {value:310, name:'女'},
+                ],
+        flag: false
+      },
+      piePolData: {
+        id: 'polDis',
+        name: '学生政治面貌分布',
+        data: [{value:335, name:'团员'},
+                {value:310, name:'党员'},
+                {value:310, name:'群众'},
+                ],
         flag: false
       }
     }
   },
   mounted () {
+    console.log(this.tdata)
     this.user = this.getUser()
     this.getClassTeacherNum()
   },
@@ -128,10 +133,12 @@ export default {
             console.log('getClassTeacherNum Failed')
           } else {
             let data = JSON.parse(result.data)
+            console.log('sasasas')
             console.log(this.teaDisData)
             this.teaDisData.data = data.tNum
             this.teaDisData.xLabel = data.label
           }
+          console.log(this.tdata)
           this.teaDisData.flag = true
         },
         function (err) {
@@ -140,7 +147,7 @@ export default {
           }
           this.$message.error('请求服务器时发生错误')
         }
-      ).bind(this)
+      )
     }
   }
 }

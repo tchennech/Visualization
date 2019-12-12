@@ -28,6 +28,8 @@
         </el-row>
       </el-col>
     </el-row>
+    {{username}}
+    {{password}}
   </div>
 </template>
 <script>

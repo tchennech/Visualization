@@ -19,11 +19,11 @@ export default {
     },
     width: {
       type: String,
-      default: '200px'
+      default: '300px'
     },
     height: {
       type: String,
-      default: '200px'
+      default: '300px'
     },
     data: {
       type: Array,
@@ -50,6 +50,18 @@ export default {
       this.chart = echarts.init(this.$refs.myEchart)
       // 把配置和数据放这里
       this.chart.setOption({
+        title: {
+        text: this.name,
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#003f43'
+        }
+    },
+        tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
         series: [{
           name: this.name,
           type: 'pie',
