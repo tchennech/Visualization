@@ -20,7 +20,7 @@ export default {
     },
     width: {
       type: String,
-      default: '700px'
+      default: '800px'
     },
     height: {
       type: String,
@@ -28,7 +28,7 @@ export default {
     },
     data: {
       type: Array,
-      default: []
+      default: null
     }
   },
   data () {
@@ -97,11 +97,12 @@ export default {
             align: 'left'
           },
           formatter: function (obj) {
+            console.log(obj)
             return '<div style="border-bottom: 1px solid rgba(255,255,255,.3); font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">' +
               obj.seriesName + ' ' +
               '</div>' +
               obj.name + '<br>' +
-              obj.value[0] + '人<br>'
+              obj.value[2] + '人<br>'
           }
         },
         color: 'red',
@@ -122,8 +123,8 @@ export default {
         visualMap: {
           type: 'continuous', // 连续型
           min: 0, // 值域最小值，必须参数
-          max: 130, // 值域最大值，必须参数
-          calculable: true, // 是否启用值域漫游
+          max: 820, // 值域最大值，必须参数
+          calculable: false, // 是否启用值域漫游
           inRange: {
             color: ['lightskyblue', 'yellow', 'orangered']
             // 指定数值从低到高时的颜色变化

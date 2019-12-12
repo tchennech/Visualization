@@ -10,6 +10,8 @@ import VueClipboard from 'vue-clipboard2'
 // import $ from 'jquery'
 import VueResource from 'vue-resource'
 import { setCookie, getCookie, delCookie, getUser } from './assets/js/cookie.js'
+import VueParticles from 'vue-particles'
+Vue.use(VueParticles)
 Vue.use(VueClipboard)
 Vue.use(ElementUI)
 Vue.use(VueResource)

@@ -82,6 +82,8 @@ export default {
     handleSelect (key, keyPath) {
       if (key === '1') {
         this.$router.push('/')
+      } else if (key === '3') {
+        this.$router.push('/exam')
       }
     }
   }

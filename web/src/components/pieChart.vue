@@ -23,11 +23,11 @@ export default {
     },
     height: {
       type: String,
-      default: '300px'
+      default: '320px'
     },
     data: {
       type: Array,
-      default: []
+      default: null
     }
   },
   data () {
@@ -51,22 +51,22 @@ export default {
       // 把配置和数据放这里
       this.chart.setOption({
         title: {
-        text: this.name,
-        left: 'center',
-        top: 20,
-        textStyle: {
+          text: this.name,
+          left: 'center',
+          top: 20,
+          textStyle: {
             color: '#003f43'
-        }
-    },
-        tooltip : {
-        trigger: 'item',
-        formatter: "{a} <br/>{b} : {c} ({d}%)"
-    },
+          }
+        },
+        tooltip: {
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {c} ({d}%)'
+        },
         series: [{
           name: this.name,
           type: 'pie',
           radius: '55%',
-          roseType: 'angle',
+          center: ['50%', '50%'],
           data: this.data
         }]
       })
