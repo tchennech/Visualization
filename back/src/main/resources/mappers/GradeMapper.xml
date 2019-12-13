@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.clt.dao.GradeMapper" >
   <resultMap id="BaseResultMap" type="com.clt.domain.Grade" >
+    <!-- df56_chengji -->
     <constructor >
       <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="bf_StudentID" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -258,4 +259,8 @@
       EXAM_KIND_NAME = #{examKindName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  <select id="selectGradebyid" parameterType="String" resultType="com.clt.domain.Grade">
+    select * from df56_chengji where bfStudentID=#{bfStudentid};
+  </select>
+
 </mapper>

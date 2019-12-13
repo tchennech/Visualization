@@ -2,6 +2,8 @@ package com.clt.dao;
 
 import com.clt.domain.Grade;
 
+import java.util.List;
+
 public interface GradeMapper {
     int deleteByPrimaryKey(String id);
 
@@ -14,4 +16,6 @@ public interface GradeMapper {
     int updateByPrimaryKeySelective(Grade record);
 
     int updateByPrimaryKey(Grade record);
+
+    List<Grade> selectGradebyid(String id);
 }

@@ -13,7 +13,7 @@ public interface TeacherMapper {
 
     Teacher selectByPrimaryKey(String tId);
 
-    List<Teacher> selectAll();
+    List<Teacher> selectAll();// 和xml里的方法声明一致
 
     int updateByPrimaryKeySelective(Teacher record);
 

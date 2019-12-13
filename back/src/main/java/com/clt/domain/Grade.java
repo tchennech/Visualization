@@ -216,4 +216,29 @@ public class Grade {
     public void setExamKindName(String examKindName) {
         this.examKindName = examKindName == null ? null : examKindName.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Grade{" +
+                "id='" + id + '\'' +
+                ", bfStudentid='" + bfStudentid + '\'' +
+                ", graName='" + graName + '\'' +
+                ", claName='" + claName + '\'' +
+                ", bfSex='" + bfSex + '\'' +
+                ", bfName='" + bfName + '\'' +
+                ", mesTestid='" + mesTestid + '\'' +
+                ", examNumber='" + examNumber + '\'' +
+                ", examNumname='" + examNumname + '\'' +
+                ", mesSubId='" + mesSubId + '\'' +
+                ", mesSubName='" + mesSubName + '\'' +
+                ", examTerm='" + examTerm + '\'' +
+                ", examType='" + examType + '\'' +
+                ", examSdate='" + examSdate + '\'' +
+                ", mesScore='" + mesScore + '\'' +
+                ", mesZScore='" + mesZScore + '\'' +
+                ", mesTScore='" + mesTScore + '\'' +
+                ", mesDengdi='" + mesDengdi + '\'' +
+                ", examKindName='" + examKindName + '\'' +
+                '}';
+    }
 }
