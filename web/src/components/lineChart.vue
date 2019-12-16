@@ -32,6 +32,10 @@ export default {
       type: Array,
       default: []
     },
+    text:{
+      type: String,
+      default: ''
+    },
     color: {
       type: String,
       default: '#57C4A9'
@@ -48,6 +52,7 @@ export default {
   data () {
     return {
       chart: null
+        
     }
   },
   mounted () {
@@ -66,6 +71,10 @@ export default {
       // 把配置和数据放这里
       this.chart.setOption({
         color: [this.color],
+        title: {
+        left: 'center',
+        text: this.text,
+        },
         tooltip: {
           trigger: 'axis',
           axisPointer: { // 坐标轴指示器，坐标轴触发有效
