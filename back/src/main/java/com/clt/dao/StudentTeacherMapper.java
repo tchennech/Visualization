@@ -1,6 +1,7 @@
 package com.clt.dao;
 
 import com.clt.domain.StudentTeacher;
+import org.apache.ibatis.annotations.Param;
 
 public interface StudentTeacherMapper {
     int deleteByPrimaryKey(String id);
@@ -14,4 +15,5 @@ public interface StudentTeacherMapper {
     int updateByPrimaryKeySelective(StudentTeacher record);
 
     int updateByPrimaryKey(StudentTeacher record);
+    public String selectteachernamebyid(@Param("id")String id, @Param("project")String project);
 }

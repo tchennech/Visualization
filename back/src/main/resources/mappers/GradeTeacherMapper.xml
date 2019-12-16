@@ -24,7 +24,7 @@
     id, 学期, 年级, 班级, 考试类型, 学号, 科目, 单科分数, Z分数, T分数, 等第, 单科班级排名, 单科年级排名, 教师ID, 教师名字
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from df_chengji_teacher
     where id = #{id,jdbcType=VARCHAR}
@@ -34,13 +34,13 @@
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.clt.domain.GradeTeacher" >
-    insert into df_chengji_teacher (id, 学期, 年级, 班级, 
-      考试类型, 学号, 科目, 单科分数, 
-      Z分数, T分数, 等第, 单科班级排名, 
+    insert into df_chengji_teacher (id, 学期, 年级, 班级,
+      考试类型, 学号, 科目, 单科分数,
+      Z分数, T分数, 等第, 单科班级排名,
       单科年级排名, 教师ID, 教师名字)
-    values (#{id,jdbcType=VARCHAR}, #{学期,jdbcType=VARCHAR}, #{年级,jdbcType=VARCHAR}, #{班级,jdbcType=VARCHAR}, 
-      #{考试类型,jdbcType=VARCHAR}, #{学号,jdbcType=VARCHAR}, #{科目,jdbcType=VARCHAR}, #{单科分数,jdbcType=VARCHAR}, 
-      #{z分数,jdbcType=VARCHAR}, #{t分数,jdbcType=VARCHAR}, #{等第,jdbcType=VARCHAR}, #{单科班级排名,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{学期,jdbcType=VARCHAR}, #{年级,jdbcType=VARCHAR}, #{班级,jdbcType=VARCHAR},
+      #{考试类型,jdbcType=VARCHAR}, #{学号,jdbcType=VARCHAR}, #{科目,jdbcType=VARCHAR}, #{单科分数,jdbcType=VARCHAR},
+      #{z分数,jdbcType=VARCHAR}, #{t分数,jdbcType=VARCHAR}, #{等第,jdbcType=VARCHAR}, #{单科班级排名,jdbcType=VARCHAR},
       #{单科年级排名,jdbcType=VARCHAR}, #{教师id,jdbcType=VARCHAR}, #{教师名字,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.clt.domain.GradeTeacher" >
@@ -206,4 +206,5 @@
       教师名字 = #{教师名字,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
 </mapper>

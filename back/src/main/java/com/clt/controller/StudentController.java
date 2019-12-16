@@ -1,6 +1,7 @@
 package com.clt.controller;
 
 import com.clt.domain.StudentInfoResult;
+import com.clt.service.GradeService;
 import com.clt.service.StudentService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -19,6 +20,8 @@ import java.io.UnsupportedEncodingException;
 public class StudentController {
 	@Resource
 	private StudentService studentService;
+	@Resource
+	private GradeService gradeService;
 	private final String SET_ENCODE = "utf-8";
 	private final String SET_TEXTURE = "text/plain";
 	private final String DATA = "datal";
@@ -50,5 +53,10 @@ public class StudentController {
         System.out.println(jsonMsg.toString());
         return jsonMsg.toString();
 	}
-	
+	@RequestMapping(value="selectStunamebyid", method=RequestMethod.GET)
+	@ResponseBody
+	public String selectStunamebyid(HttpServletRequest request, HttpServletResponse response, HttpSession session,String id) {
+
+		return  studentService.selectStunamebyid(id);
+	}
 }

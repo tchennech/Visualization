@@ -82,5 +82,8 @@ public class StudentService {
 		}
 		return new StudentInfoResult(place, sex, policy);
 	}
+	public String selectStunamebyid(String id){
+		return sim.selectStunamebyid(id);
+	}
 
 }

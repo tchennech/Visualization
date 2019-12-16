@@ -1,6 +1,7 @@
 package com.clt.dao;
 
 import com.clt.domain.Grade;
+import com.clt.domain.Grade_teacher;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface GradeMapper {
 
     int updateByPrimaryKey(Grade record);
 
-    List<Grade> selectGradebyid(String id);
+    List<Grade_teacher> selectGradebyid(String id);
 }

@@ -203,4 +203,8 @@
       bf_qinshihao = #{bfQinshihao,jdbcType=VARCHAR}
     where bf_StudentID = #{bfStudentid,jdbcType=VARCHAR}
   </update>
+  <select id="selectStunamebyid" parameterType="String" resultType="String">
+    select bf_Name from student_info where bf_StudentID=#{id};
+  </select>
 </mapper>
+

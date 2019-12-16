@@ -1,5 +1,7 @@
 package com.clt.domain;
 
+import org.apache.ibatis.annotations.Param;
+
 public class GradeTeacher {
     private String id;
 
@@ -172,4 +174,5 @@ public class GradeTeacher {
     public void set教师名字(String 教师名字) {
         this.教师名字 = 教师名字 == null ? null : 教师名字.trim();
     }
+
 }

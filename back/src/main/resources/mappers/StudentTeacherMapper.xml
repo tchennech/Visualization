@@ -269,4 +269,11 @@
       bas_Name = #{basName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  <select id="selectteachernamebyid"  resultType="String">
+    select bas_Name from student_teacher where bf_StudentID=#{id} and sub_Name=#{project};
+  </select>
+  <select id="selectStunamebyid" parameterType="String" resultType="String">
+    select  bf_Name from student_teacher b where
+    b.bf_StudentID=#{id};
+  </select>
 </mapper>

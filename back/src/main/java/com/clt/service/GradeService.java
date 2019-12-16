@@ -2,6 +2,7 @@ package com.clt.service;
 
 import com.clt.dao.GradeMapper;
 import com.clt.domain.Grade;
+import com.clt.domain.Grade_teacher;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ import java.util.List;
 public class GradeService {
     @Resource
     private GradeMapper gradeMapper;
-    public List<Grade> selectGradebyid(String id){
+    public List<Grade_teacher> selectGradebyid(String id){
         return gradeMapper.selectGradebyid(id);
     }
 }

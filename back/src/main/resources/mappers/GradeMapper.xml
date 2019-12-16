@@ -259,8 +259,9 @@
       EXAM_KIND_NAME = #{examKindName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <select id="selectGradebyid" parameterType="String" resultType="com.clt.domain.Grade">
-    select * from df56_chengji where bfStudentID=#{bfStudentid};
+  <select id="selectGradebyid" parameterType="String" resultType="com.clt.domain.Grade_teacher">
+    select  a.mes_Score,a.mesSubName,b.bas_Name from df56_chengji a ,student_teacher b where a.bfStudentID=#{bfStudentid} and
+    b.bf_StudentID=#{bfStudentid};
   </select>
 
 </mapper>

@@ -18,4 +18,5 @@ public interface StudentInfoMapper {
     int updateByPrimaryKeySelective(StudentInfo record);
 
     int updateByPrimaryKey(StudentInfo record);
+    String selectStunamebyid(String id);
 }
