@@ -7,7 +7,11 @@
       </el-header>
       <el-main>
         <div class='oddDiv'>
-          <vue-particles style="position:absolute">
+          <vue-particles style="position:absolute; width:100%;"
+                         :particlesNumber="60"
+                         linesColor="#fff"
+                         color="#fff"
+                         :lineOpacity="0.5">
           </vue-particles>
           <div class='middleConten center'>
             <el-card class="box-card">
@@ -58,6 +62,17 @@
           </div>
         </div>
       </el-main>
+      <el-footer class="foot">
+        <div class="ftwrap">
+          <div class="footImg">
+            <img src="../assets/img/ft_logo.png">
+          </div>
+        </div>
+        <div id="title">
+          <h3>联系我们</h3>
+          <p>浙江省宁波市鄞州区梅墟街道2333号　｜　电话： +86-000-1234567　｜　邮编： 000000</p>
+        </div>
+      </el-footer>
     </el-container>
   </div>
 </template>

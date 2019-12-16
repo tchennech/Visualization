@@ -1,9 +1,9 @@
 .oddDiv {
-  background-color: rgb(227, 255, 253);
+  background-color: #2bb7b3;
   text-align:center;
 }
 .evenDiv {
-  background-color: rgb(155, 231, 236);
+  background-color: #c7dcdf;
   /* background-color: transparent; */
   text-align:center;
 }
@@ -15,6 +15,9 @@
 /* .el-col {
   background-color: rgba(231, 216, 200, 0.2) !important;
 } */
+.el-card {
+  z-index: 99;
+}
 .center {
   left:0;
   top:0;
@@ -47,6 +50,35 @@
 }
 .el-main {
   padding: 0 !important;
+}
+.foot {
+  background-color: #003f43;
+  height: 420px !important;
+  padding-top: 120px !important;
+  display: block;
+}
+#title > h3 {
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+#title > p {
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+.foot > #title {
+  padding-top: 70px;
+}
+.footImg {
+  width: 30%;
+  float: left;
+}
+.ftwrap {
+  width: 1150px;
+  margin: 0 auto;
 }
 .clearfix:before,
   .clearfix:after {

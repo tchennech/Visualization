@@ -1,0 +1,13 @@
+#atdMain {
+  text-align: center;
+}
+.outMain {
+  width: 70%;
+  margin: auto;
+}
+.rightText > h3{
+  padding: 10px 0;
+}
+.rightText > div > .el-divider {
+  margin: 10px 0 !important;
+}

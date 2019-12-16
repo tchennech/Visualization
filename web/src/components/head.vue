@@ -38,10 +38,10 @@
         <el-menu-item index="4">考勤</el-menu-item>
       </el-col>
       <el-col :span="3">
-        <el-menu-item index="4">消费</el-menu-item>
+        <el-menu-item index="5">消费</el-menu-item>
       </el-col>
       <el-col :span="4">
-        <el-menu-item index="4">
+        <el-menu-item index="6">
           <span>{{date}}</span>
           <span class="rightParts">{{loginUser.userName}}, 你好</span>
           <span class="rightParts">
@@ -84,6 +84,8 @@ export default {
         this.$router.push('/')
       } else if (key === '3') {
         this.$router.push('/exam')
+      } else if (key === '4') {
+        this.$router.push('/atdhome')
       }
     }
   }
