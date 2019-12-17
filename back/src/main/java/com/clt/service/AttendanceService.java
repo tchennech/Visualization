@@ -8,10 +8,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Scope
@@ -61,6 +59,57 @@ public class AttendanceService {
                 }
                 result.add(new AttendanceInfo(outEach, outInfo.get(outEach), children));
             }
+        } catch (Exception e) {
+            throw new Exception(e);
+        }
+        return result;
+    }
+    public Map<String, List<List<Integer>>> getUpData() throws Exception {
+        Map<String, List<List<Integer>>> result;
+
+        AttendanceMap amap = AttendanceMap.getAttendanceMap();
+        String[] keyMaps = amap.getEachDetail()[3];
+        int[][] sexArray = new int[2][5];
+        int[][] liveArray = new int[2][5];
+        try {
+            Map<String, Integer> outInfo= new HashMap<>();
+            Map<String, Integer> insideInfo= new HashMap<>();
+            List<Kaoqin> allData = atte.selectAll();
+            // count each num
+            for(Kaoqin each : allData) {
+                String in = each.getControlTaskOrderId();
+                int i;
+                for(i=0; i<5; i++) {
+                    if(keyMaps[i].equals(in)) break;
+                }
+                if(i == 5) continue;
+                // 住宿，因为表不完整没法做，所以随机
+                if(new Random().nextDouble() < 0.6) {
+                    liveArray[0][i] += 1;
+                } else {
+                    liveArray[1][i] += 1;
+                }
+
+                // 性别，因为表不完整没法做，所以随机
+                if(new Random().nextDouble() < 0.6) {
+                    sexArray[0][i] += 1;
+                } else {
+                    sexArray[1][i] += 1;
+                }
+            }
+            result = new HashMap<>();
+            List<Integer> s1 = Arrays.stream(sexArray[0]).boxed().collect(Collectors.toList());
+            List<Integer> s2 = Arrays.stream(sexArray[1]).boxed().collect(Collectors.toList());
+            List<List<Integer>> left = new ArrayList<>();
+            left.add(s1);
+            left.add(s2);
+            result.put("left", left);
+            List<Integer> l1 = Arrays.stream(liveArray[0]).boxed().collect(Collectors.toList());
+            List<Integer> l2 = Arrays.stream(liveArray[1]).boxed().collect(Collectors.toList());
+            List<List<Integer>> right = new ArrayList<>();
+            left.add(l1);
+            left.add(l2);
+            result.put("left", right);
         } catch (Exception e) {
             throw new Exception(e);
         }

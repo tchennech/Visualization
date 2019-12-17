@@ -1,57 +1,67 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="18">
-        <h2>考勤总览</h2>
-        <sunBurst :data="data"
-                  v-if="flag"></sunBurst>
-      </el-col>
-      <el-col :span="6">
-        <div class="rightText"
-             v-for="child in data"
-             :key="child.name">
-          <el-divider></el-divider>
-          <h3>
-            {{child.name}}
-          </h3>
-          <div v-for="each in child.children"
-               :key="each.name">
-            <el-divider></el-divider>
-            <span>
-              <el-row>
-                <el-col :span="8">{{each.name}}</el-col>
-                <el-col :span="16">{{each.value}}</el-col>
-              </el-row>
-            </span>
-          </div>
-        </div>
-      </el-col>
+      <mbarChart :legend="upData1.legend"
+                 :xAxis="upData1.xAxis"
+                 :data="upData1.data"
+                 :title="upData1.title"
+                 :id="upData1.id"
+                 v-if="upData1.flag"></mbarChart>
+      <mbarChart :legend="upData2.legend"
+                 :xAxis="upData2.xAxis"
+                 :data="upData2.data"
+                 :title="upData2.title"
+                 :id="upData2.id"
+                 v-if="upData2.flag"></mbarChart>
     </el-row>
-
+    <el-row>
+      极坐标柱状图
+    </el-row>
   </div>
 </template>
 <script>
-import sunBurst from '@/components/sunburst.vue'
-import '@/assets/css/summary.css'
+import mbarChart from '@/components/barChart_muliti.vue'
 export default {
   name: 'deData',
   components: {
-    sunBurst
+    mbarChart
   },
   data () {
     return {
-      data: [],
-      flag: false,
-      data1: [],
-      data2: []
+      xlabel: ['迟到', '校服', '早退', '离校', '进校'],
+      upData1: {
+        legend: ['男', '女'],
+        xAxis: this.xlabel,
+        data: [],
+        title: '考勤性别比',
+        id: 'sexBar',
+        flag: false
+      },
+      upData2: {
+        legend: ['住校', '非住校'],
+        xAxis: this.xlabel,
+        data: [],
+        title: '考勤住校比',
+        id: 'sleepBar',
+        flag: false
+      },
+      downData1: {
+
+      },
+      downData2: {
+
+      },
+      downData3: {
+
+      }
     }
   },
   mounted () {
-    this.getAllData()
+    this.getUpData()
   },
   methods: {
-    getAllData () {
-      this.$http.post('/api/getallattendance.action').then(
+    getUpData () {
+      this.$http.post('/api/getUpData.action').then(
         function (res) {
           let result = JSON.parse(JSON.parse(res.bodyText))
           if (result.status === 1) {
@@ -62,8 +72,34 @@ export default {
             console.log('getClassTeacherNum Failed')
           } else {
             let data = JSON.parse(result.data)
-            this.data = data
-            this.flag = true
+            let baseData = {
+              name: '',
+              type: 'bar',
+              stack: '总量',
+              label: {
+                normal: {
+                  show: true
+                }
+              },
+              data: []
+            }
+            let man = baseData
+            man.name = this.upData1.legend[0]
+            man.data = data.left[0]
+            let women = baseData
+            women.name = this.upData1.legend[1]
+            women.data = data.left[1]
+            this.upData1.data = [man, women]
+            this.upData1.flag = true
+
+            let lin = baseData
+            lin.name = this.upData2.legend[0]
+            lin.data = data.right[0]
+            let lout = baseData
+            lout.name = this.upData2.legend[1]
+            lout.data = data.right[1]
+            this.upData2.data = [lin, lout]
+            this.upData2.flag = true
           }
         },
         function (err) {
