@@ -34,7 +34,7 @@
 import sunBurst from '@/components/sunburst.vue'
 import '@/assets/css/summary.css'
 export default {
-  name: 'vsummary',
+  name: 'deData',
   components: {
     sunBurst
   },

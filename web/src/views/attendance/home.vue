@@ -13,7 +13,9 @@
               <vsummary></vsummary>
             </el-tab-pane>
             <el-tab-pane label="本学期考勤数据"
-                         name="second">本学期考勤数据</el-tab-pane>
+                         name="second">
+              <deData></deData>
+            </el-tab-pane>
           </el-tabs>
         </div>
       </el-main>
@@ -24,10 +26,12 @@
 import gHead from '@/components/head.vue'
 import '@/assets/css/atdHome.css'
 import vsummary from './summary.vue'
+import deData from './detail.vue'
 export default {
   components: {
     gHead,
-    vsummary
+    vsummary,
+    deData
   },
   data () {
     return {

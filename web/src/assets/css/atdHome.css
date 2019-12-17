@@ -11,3 +11,6 @@
 .rightText > div > .el-divider {
   margin: 10px 0 !important;
 }
+#sunBurst {
+  margin: 0 auto !important;
+}
