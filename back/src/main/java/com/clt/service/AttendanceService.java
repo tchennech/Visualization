@@ -107,9 +107,9 @@ public class AttendanceService {
             List<Integer> l1 = Arrays.stream(liveArray[0]).boxed().collect(Collectors.toList());
             List<Integer> l2 = Arrays.stream(liveArray[1]).boxed().collect(Collectors.toList());
             List<List<Integer>> right = new ArrayList<>();
-            left.add(l1);
-            left.add(l2);
-            result.put("left", right);
+            right.add(l1);
+            right.add(l2);
+            result.put("right", right);
         } catch (Exception e) {
             throw new Exception(e);
         }

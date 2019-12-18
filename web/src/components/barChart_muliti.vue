@@ -15,11 +15,11 @@ export default {
     },
     width: {
       type: String,
-      default: '500px'
+      default: '350px'
     },
     height: {
       type: String,
-      default: '500px'
+      default: '350px'
     },
     xAxis: {
       type: Array
