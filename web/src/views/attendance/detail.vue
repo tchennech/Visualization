@@ -7,7 +7,8 @@
                    :data="upData1.data"
                    :title="upData1.title"
                    :id="upData1.id"
-                   v-if="upData1.flag"></mbarChart>
+                   v-if="upData1.flag"
+                   class="center"></mbarChart>
       </el-col>
       <el-col :span="12">
         <mbarChart :legend="upData2.legend"
@@ -15,11 +16,39 @@
                    :data="upData2.data"
                    :title="upData2.title"
                    :id="upData2.id"
-                   v-if="upData2.flag"></mbarChart>
+                   v-if="upData2.flag"
+                   class="center"></mbarChart>
       </el-col>
     </el-row>
+    <el-divider></el-divider>
     <el-row>
-      极坐标柱状图
+      <el-col :span="8">
+        <barPolar :name="downData[0].name"
+                  :id="downData[0].id"
+                  :xLabel="downData[0].xLabel"
+                  :legend="xlabel"
+                  :data="downData[0].data"
+                  v-if="downData[0].flag">
+        </barPolar>
+      </el-col>
+      <el-col :span="8">
+        <barPolar :name="downData[1].name"
+                  :id="downData[1].id"
+                  :xLabel="downData[1].xLabel"
+                  :legend="xlabel"
+                  :data="downData[1].data"
+                  v-if="downData[1].flag">
+        </barPolar>
+      </el-col>
+      <el-col :span="8">
+        <barPolar :name="downData[2].name"
+                  :id="downData[2].id"
+                  :xLabel="downData[2].xLabel"
+                  :legend="xlabel"
+                  :data="downData[2].data"
+                  v-if="downData[2].flag">
+        </barPolar>
+      </el-col>
     </el-row>
   </div>
 </template>
@@ -51,19 +80,32 @@ export default {
         id: 'sleepBar',
         flag: false
       },
-      downData1: {
-
-      },
-      downData2: {
-
-      },
-      downData3: {
-
-      }
+      downData: [
+        {
+          name: '早高峰考勤',
+          id: 'morning',
+          xLabel: [21600, 25200],
+          data: [],
+          flag: false
+        }, {
+          name: '午高峰考勤',
+          id: 'afternoon',
+          xLabel: [39600, 43200],
+          data: [],
+          flag: false
+        }, {
+          name: '晚高峰考勤',
+          id: 'night',
+          xLabel: [57600, 61200],
+          data: [],
+          flag: false
+        }
+      ]
     }
   },
   mounted () {
     this.getUpData()
+    this.getDownData()
   },
   methods: {
     getUpData () {
@@ -108,9 +150,49 @@ export default {
             this.upData2.data = [lin, lout]
             this.upData2.xAxis = this.xlabel
             this.upData2.flag = true
-
-            console.log(this.upData1)
-            console.log(this.upData2)
+          }
+        },
+        function (err) {
+          if (err) {
+            console.log(err.stack)
+          }
+          this.$message.error('请求服务器时发生错误')
+        }
+      )
+    },
+    getDownData () {
+      this.$http.post('/api/getDownData.action').then(
+        function (res) {
+          let result = JSON.parse(JSON.parse(res.bodyText))
+          if (result.status === 1) {
+            this.$message({
+              message: '获取数据失败:' + result.msg,
+              type: 'warning'
+            })
+            console.log('getClassTeacherNum Failed')
+          } else {
+            let data = JSON.parse(result.data)
+            let baseData = {
+              type: 'bar',
+              data: [],
+              coordinateSystem: 'polar',
+              stack: 'as',
+              name: ''
+              // Set `large` for large data amount
+            }
+            for (let index in data) {
+              let eachData = data[index]
+              let datas = []
+              for (let inside in eachData) {
+                let each = JSON.parse(JSON.stringify(baseData))
+                each.data = eachData[inside]
+                each.name = this.xlabel[inside]
+                datas.push(each)
+              }
+              this.downData[index].data = JSON.parse(JSON.stringify(datas))
+              this.downData[index].flag = true
+            }
+            console.log(this.downData)
           }
         },
         function (err) {

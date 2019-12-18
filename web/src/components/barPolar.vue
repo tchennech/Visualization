@@ -22,11 +22,11 @@ export default {
     },
     width: {
       type: String,
-      default: '500px'
+      default: '310px'
     },
     height: {
       type: String,
-      default: '500px'
+      default: '400px'
     },
     xLabel: {
       type: Array
@@ -64,13 +64,15 @@ export default {
     initChart () {
       this.chart = echarts.init(this.$refs.myEchart)
       // 把配置和数据放这里
+      let _this = this
       this.chart.setOption({
         title: {
           text: this.name
         },
         legend: {
           show: true,
-          data: this.legend
+          data: this.legend,
+          top: '20px'
         },
         grid: {
           top: 100
@@ -88,7 +90,7 @@ export default {
             type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
           },
           formatter: function (val) {
-            let result = this.ftime(val[0].value[1], 0) + '<br>'
+            let result = _this.ftime(val[0].value[1], 0) + '<br>'
             for (let index in val) {
               result += val[index].marker + ' ' +
                 val[index].seriesName + ': ' +
@@ -98,7 +100,8 @@ export default {
           }
         },
         radiusAxis: {
-          type: 'value'
+          type: 'value',
+          max: 50
         },
         polar: {
         },

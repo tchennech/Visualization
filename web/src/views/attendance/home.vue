@@ -7,7 +7,8 @@
       <el-main id="atdMain">
         <div class="outMain">
           <el-tabs v-model="activeName"
-                   tab-position="left">
+                   tab-position="left"
+                   style="height: 880px;">
             <el-tab-pane label="概要"
                          name="first">
               <vsummary></vsummary>
