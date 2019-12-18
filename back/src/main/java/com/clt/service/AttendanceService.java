@@ -3,6 +3,7 @@ package com.clt.service;
 import com.clt.dao.KaoqinMapper;
 import com.clt.domain.AttendanceInfo;
 import com.clt.domain.Kaoqin;
+import com.clt.tools.MapArray;
 import com.clt.util.AttendanceMap;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -110,6 +111,71 @@ public class AttendanceService {
             right.add(l1);
             right.add(l2);
             result.put("right", right);
+        } catch (Exception e) {
+            throw new Exception(e);
+        }
+        return result;
+    }
+    public List<List<List<List<Integer>>>> getDownData() throws Exception {
+        List<List<List<List<Integer>>>> result;
+
+        AttendanceMap amap = AttendanceMap.getAttendanceMap();
+        String[] keyMaps = amap.getEachDetail()[3];
+        MapArray[][] counter = new MapArray[3][5];
+        // init
+        for(int i=0; i<5; i++) {
+            counter[0][i] = new MapArray();
+            counter[1][i] = new MapArray();
+            counter[2][i] = new MapArray();
+        }
+        try {
+            List<Kaoqin> allData = atte.selectAll();
+            // count each num
+            for(Kaoqin each : allData) {
+                String in = each.getControlTaskOrderId();
+                int i;
+                for(i=0; i<5; i++) {
+                    if(keyMaps[i].equals(in)) break;
+                }
+                if(i == 5) continue;
+
+                String allDate = each.getDatadatetime();
+                String[] before = allDate.split(" ");
+                String[] hAndm = before[before.length-1].trim().split(":");
+                int time = Integer.parseInt(hAndm[0]) * 3600 + Integer.parseInt(hAndm[1]) * 60;
+                // count
+                if (21600 < time && 25200 > time) {
+                    counter[0][i].addNum(time);
+                } else if (39600 < time && 43200 > time) {
+                    counter[1][i].addNum(time);
+                } else if (57600 < time && 61200 > time) {
+                    counter[2][i].addNum(time);
+                }
+
+            }
+            List<List<List<Integer>>> morList = new ArrayList<>();
+            List<List<List<Integer>>> aftList = new ArrayList<>();
+            List<List<List<Integer>>> nigList = new ArrayList<>();
+            for (int i=0; i<3; i++) {
+                for (MapArray each : counter[i]) {
+                    List<List<Integer>> one = new ArrayList<>();
+                    for (Map.Entry<Integer, Integer> entry : each.getBothInt().entrySet()) {
+                        List<Integer> val = new ArrayList<>();
+                        val.add(entry.getValue());
+                        val.add(entry.getKey());
+                        one.add(val);
+                    }
+                    if(i == 0) morList.add(one);
+                    else if(i == 1) aftList.add(one);
+                    else nigList.add(one);
+                }
+
+            }
+
+            result = new ArrayList<>();
+            result.add(morList);
+            result.add(aftList);
+            result.add(nigList);
         } catch (Exception e) {
             throw new Exception(e);
         }

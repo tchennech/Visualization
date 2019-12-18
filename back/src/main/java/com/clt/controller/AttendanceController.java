@@ -76,4 +76,24 @@ public class AttendanceController {
 		System.out.println(jsonMsg.toString());
 		return jsonMsg.toString();
 	}
+	@RequestMapping(value = "getDownData", method = RequestMethod.POST)
+	@ResponseBody
+	public String getDownData(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		List<List<List<List<Integer>>>> result;
+		JsonObject jsonMsg = new JsonObject();
+		try {
+			result = attendanceService.getDownData();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			jsonMsg.addProperty("status", 1);
+			jsonMsg.addProperty("msg", e.getMessage());
+			return jsonMsg.toString();
+		}
+
+		jsonMsg.addProperty("status", 0);
+		jsonMsg.addProperty("data", (new Gson()).toJson(result).toString());
+		System.out.println(jsonMsg.toString());
+		return jsonMsg.toString();
+	}
 }
