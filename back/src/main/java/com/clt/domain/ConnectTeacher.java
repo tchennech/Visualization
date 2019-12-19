@@ -3,76 +3,60 @@ package com.clt.domain;
 public class ConnectTeacher {
     private String id;
 
-    private String bfStudentid;
+    private String bf_Studentid;
 
-    private String graName;
+    private String gra_Name;
 
-    private String claName;
+    private String cla_Name;
 
-    private String claTerm;
+    private String cla_Term;
 
     private String subId;
 
-    private String subName;
+    private String sub_Name;
 
     private String basId;
 
-    private String basName;
-
-    public ConnectTeacher(String id, String bfStudentid, String graName, String claName, String claTerm, String subId, String subName, String basId, String basName) {
-        this.id = id;
-        this.bfStudentid = bfStudentid;
-        this.graName = graName;
-        this.claName = claName;
-        this.claTerm = claTerm;
-        this.subId = subId;
-        this.subName = subName;
-        this.basId = basId;
-        this.basName = basName;
-    }
-
-    public ConnectTeacher() {
-        super();
-    }
+    private String bas_Name;
 
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+        this.id = id;
     }
 
-    public String getBfStudentid() {
-        return bfStudentid;
+    public String getBf_Studentid() {
+        return bf_Studentid;
     }
 
-    public void setBfStudentid(String bfStudentid) {
-        this.bfStudentid = bfStudentid == null ? null : bfStudentid.trim();
+    public void setBf_Studentid(String bf_Studentid) {
+        this.bf_Studentid = bf_Studentid;
     }
 
-    public String getGraName() {
-        return graName;
+    public String getGra_Name() {
+        return gra_Name;
     }
 
-    public void setGraName(String graName) {
-        this.graName = graName == null ? null : graName.trim();
+    public void setGra_Name(String gra_Name) {
+        this.gra_Name = gra_Name;
     }
 
-    public String getClaName() {
-        return claName;
+    public String getCla_Name() {
+        return cla_Name;
     }
 
-    public void setClaName(String claName) {
-        this.claName = claName == null ? null : claName.trim();
+    public void setCla_Name(String cla_Name) {
+        this.cla_Name = cla_Name;
     }
 
-    public String getClaTerm() {
-        return claTerm;
+    public String getCla_Term() {
+        return cla_Term;
     }
 
-    public void setClaTerm(String claTerm) {
-        this.claTerm = claTerm == null ? null : claTerm.trim();
+    public void setCla_Term(String cla_Term) {
+        this.cla_Term = cla_Term;
     }
 
     public String getSubId() {
@@ -80,15 +64,15 @@ public class ConnectTeacher {
     }
 
     public void setSubId(String subId) {
-        this.subId = subId == null ? null : subId.trim();
+        this.subId = subId;
     }
 
-    public String getSubName() {
-        return subName;
+    public String getSub_Name() {
+        return sub_Name;
     }
 
-    public void setSubName(String subName) {
-        this.subName = subName == null ? null : subName.trim();
+    public void setSub_Name(String sub_Name) {
+        this.sub_Name = sub_Name;
     }
 
     public String getBasId() {
@@ -96,14 +80,14 @@ public class ConnectTeacher {
     }
 
     public void setBasId(String basId) {
-        this.basId = basId == null ? null : basId.trim();
+        this.basId = basId;
     }
 
-    public String getBasName() {
-        return basName;
+    public String getBas_Name() {
+        return bas_Name;
     }
 
-    public void setBasName(String basName) {
-        this.basName = basName == null ? null : basName.trim();
+    public void setBas_Name(String bas_Name) {
+        this.bas_Name = bas_Name;
     }
 }
