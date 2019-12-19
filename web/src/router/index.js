@@ -5,6 +5,8 @@ import login from '@/views/login.vue'
 import home from '@/views/home.vue'
 import atdhome from '@/views/attendance/home.vue'
 import exam from '@/views/exam/detail.vue'
+import classdetail from '@/views/classdetail/classdetail.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -37,6 +39,14 @@ export default new Router({
       path: '/atdhome',
       name: 'atdhome',
       component: atdhome,
+      meta: {
+        keepAlive: false
+      }
+    },
+    {
+      path: '/classdetail',
+      name: 'classdetail',
+      component: classdetail,
       meta: {
         keepAlive: false
       }

@@ -86,6 +86,8 @@ export default {
         this.$router.push('/exam')
       } else if (key === '4') {
         this.$router.push('/atdhome')
+      }else if(key=='2-1'){
+         this.$router.push('/classdetail')
       }
     }
   }
