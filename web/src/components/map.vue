@@ -97,7 +97,6 @@ export default {
             align: 'left'
           },
           formatter: function (obj) {
-            console.log(obj)
             return '<div style="border-bottom: 1px solid rgba(255,255,255,.3); font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">' +
               obj.seriesName + ' ' +
               '</div>' +

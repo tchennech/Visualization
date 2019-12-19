@@ -85,5 +85,9 @@ public class StudentService {
 	public String selectStunamebyid(String id){
 		return sim.selectStunamebyid(id);
 	}
+	public List<StudentInfo> selectStubyClassname(String classname){
+		return sim.selectStubyClassname(classname);
+
+	}
 
 }

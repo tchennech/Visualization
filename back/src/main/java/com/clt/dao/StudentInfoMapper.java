@@ -19,4 +19,6 @@ public interface StudentInfoMapper {
 
     int updateByPrimaryKey(StudentInfo record);
     String selectStunamebyid(String id);
+
+    List<StudentInfo> selectStubyClassname(String classname);
 }

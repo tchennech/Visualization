@@ -27,8 +27,8 @@ public class GradeController {
 //    private Student_teacher student_teacher;
     @RequestMapping(value = "selectgradebyid", method= RequestMethod.GET)
     @ResponseBody
-    public String getAllStudentHomeData(HttpServletRequest request, HttpServletResponse response, HttpSession session,String id,String project) {
-        System.out.println(id);
+    public String getAllStudentHomeData(HttpServletRequest request, HttpServletResponse response, HttpSession session,String id,String project)  {
+        System.out.println(id+project);
         List<Grade_teacher> grades = gradeService.selectGradebyid(id);
         List<Grade_teacher> gradespro=new ArrayList<>();
         for (Grade_teacher gra: grades

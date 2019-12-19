@@ -24,7 +24,7 @@
     Bf_ResidenceType, bf_policy, cla_id, cla_term, bf_zhusu, bf_leaveSchool, bf_qinshihao
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from student_info
     where bf_StudentID = #{bfStudentid,jdbcType=VARCHAR}
@@ -39,15 +39,15 @@
     where bf_StudentID = #{bfStudentid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.clt.domain.StudentInfo" >
-    insert into student_info (bf_StudentID, bf_Name, bf_sex, 
-      bf_nation, bf_BornDate, cla_Name, 
-      bf_NativePlace, Bf_ResidenceType, bf_policy, 
-      cla_id, cla_term, bf_zhusu, 
+    insert into student_info (bf_StudentID, bf_Name, bf_sex,
+      bf_nation, bf_BornDate, cla_Name,
+      bf_NativePlace, Bf_ResidenceType, bf_policy,
+      cla_id, cla_term, bf_zhusu,
       bf_leaveSchool, bf_qinshihao)
-    values (#{bfStudentid,jdbcType=VARCHAR}, #{bfName,jdbcType=VARCHAR}, #{bfSex,jdbcType=VARCHAR}, 
-      #{bfNation,jdbcType=VARCHAR}, #{bfBorndate,jdbcType=VARCHAR}, #{claName,jdbcType=VARCHAR}, 
-      #{bfNativeplace,jdbcType=VARCHAR}, #{bfResidencetype,jdbcType=VARCHAR}, #{bfPolicy,jdbcType=VARCHAR}, 
-      #{claId,jdbcType=VARCHAR}, #{claTerm,jdbcType=VARCHAR}, #{bfZhusu,jdbcType=VARCHAR}, 
+    values (#{bfStudentid,jdbcType=VARCHAR}, #{bfName,jdbcType=VARCHAR}, #{bfSex,jdbcType=VARCHAR},
+      #{bfNation,jdbcType=VARCHAR}, #{bfBorndate,jdbcType=VARCHAR}, #{claName,jdbcType=VARCHAR},
+      #{bfNativeplace,jdbcType=VARCHAR}, #{bfResidencetype,jdbcType=VARCHAR}, #{bfPolicy,jdbcType=VARCHAR},
+      #{claId,jdbcType=VARCHAR}, #{claTerm,jdbcType=VARCHAR}, #{bfZhusu,jdbcType=VARCHAR},
       #{bfLeaveschool,jdbcType=VARCHAR}, #{bfQinshihao,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.clt.domain.StudentInfo" >
@@ -205,6 +205,10 @@
   </update>
   <select id="selectStunamebyid" parameterType="String" resultType="String">
     select bf_Name from student_info where bf_StudentID=#{id};
+  </select>
+  <select id="selectStubyClassname" parameterType="String" resultMap="BaseResultMap">
+
+select * from student_info where cla_Name=#{classname};
   </select>
 </mapper>
 

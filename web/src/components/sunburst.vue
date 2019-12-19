@@ -14,7 +14,7 @@ export default {
   props: {
     name: {
       type: String,
-      default: '考勤'
+      default: ' '
     },
     id: {
       type: String,
@@ -22,11 +22,11 @@ export default {
     },
     width: {
       type: String,
-      default: '700px'
+      default: '900px'
     },
     height: {
       type: String,
-      default: '700px'
+      default: '900px'
     },
     data: {
       type: Array,
@@ -52,50 +52,51 @@ export default {
     initChart () {
       this.chart = echarts.init(this.$refs.myEchart)
       // 把配置和数据放这里
-      this.chart.setOption({ title: {
-        text: this.name,
-        textStyle: {
-          fontSize: 14,
-          align: 'center'
+      this.chart.setOption({
+        title: {
+          text: this.name,
+          textStyle: {
+            fontSize: 14,
+            align: 'center'
+          },
+          subtextStyle: {
+            align: 'center'
+          }
         },
-        subtextStyle: {
-          align: 'center'
+        series: {
+          type: 'sunburst',
+          highlightPolicy: 'ancestor',
+          data: this.data,
+          radius: [0, '95%'],
+          sort: null,
+          levels: [{}, {
+            r0: '15%',
+            r: '35%',
+            itemStyle: {
+              borderWidth: 2
+            },
+            label: {
+              rotate: 'tangential'
+            }
+          }, {
+            r0: '35%',
+            r: '70%',
+            label: {
+              align: 'right'
+            }
+          }, {
+            r0: '70%',
+            r: '72%',
+            label: {
+              position: 'outside',
+              padding: 3,
+              silent: false
+            },
+            itemStyle: {
+              borderWidth: 3
+            }
+          }]
         }
-      },
-      series: {
-        type: 'sunburst',
-        highlightPolicy: 'ancestor',
-        data: this.data,
-        radius: [0, '95%'],
-        sort: null,
-        levels: [{}, {
-          r0: '15%',
-          r: '35%',
-          itemStyle: {
-            borderWidth: 2
-          },
-          label: {
-            rotate: 'tangential'
-          }
-        }, {
-          r0: '35%',
-          r: '70%',
-          label: {
-            align: 'right'
-          }
-        }, {
-          r0: '70%',
-          r: '72%',
-          label: {
-            position: 'outside',
-            padding: 3,
-            silent: false
-          },
-          itemStyle: {
-            borderWidth: 3
-          }
-        }]
-      }
       })
     }
   }

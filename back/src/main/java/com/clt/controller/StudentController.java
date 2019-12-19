@@ -1,6 +1,7 @@
 package com.clt.controller;
 
 import com.clt.domain.StudentInfoResult;
+import com.clt.exclusive_to_Zero.Classdetail;
 import com.clt.service.GradeService;
 import com.clt.service.StudentService;
 import com.google.gson.Gson;
@@ -15,6 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class StudentController {
@@ -59,4 +64,79 @@ public class StudentController {
 
 		return  studentService.selectStunamebyid(id);
 	}
+	@RequestMapping(value="selectStubyClassname", method=RequestMethod.GET)
+	@ResponseBody
+	public String selectStubyClassname(HttpServletRequest request, HttpServletResponse response, HttpSession session, String classname) {
+
+		List<StudentInfo>  stus= studentService.selectStubyClassname(classname);
+		Classdetail cd= new Classdetail();
+		Map<String,Integer> name = new HashMap<>();
+		Map<String,Integer> location = new HashMap<>();
+		location.put("宁波",0);
+		location.put("其他",0);
+		Map<String,Integer> birth_year = new HashMap<>();
+		System.out.println(stus.size());
+
+		for (int i = 0; i < stus.size(); i++) {
+			StudentInfo studentInfo =  stus.get(i);
+			if(studentInfo.getBfSex().equals("male"))//性别
+				cd.setMale(cd.getMale()+1);
+			else if(studentInfo.getBfSex().equals("famale"))//性别
+				cd.setFamale(cd.getFamale()+1);
+			String FistName=studentInfo.getBfName().substring(0,1);
+			System.out.println("姓名"+FistName+name.get("吴"));
+			if(name.get(FistName)==null)//如果姓氏数量为0
+			{
+				name.put(FistName,1);
+			}else{
+				name.put(FistName,name.get(FistName)+1);
+			}
+
+			String birthyear=studentInfo.getBfBorndate();//名字
+			try{
+				if(birthyear.equals(""))
+				{
+					birth_year.put("2000",birth_year.get("2000")+1);
+				}
+				else if(birth_year.get(birthyear)==null)//如果姓氏数量为0
+				{
+					birth_year.put(birthyear,1);
+				}else{
+					birth_year.put(birthyear,birth_year.get(birthyear)+1);
+				}//给不同年份出生的人
+			}catch (Exception e){
+				birth_year.put("2000",birth_year.get("2000")+1);
+			}
+
+
+
+
+			String bfNativeplace = studentInfo.getBfNativeplace();//获取出生地名
+
+//			System.out.println(bfNativeplace.indexOf("宁波"));
+			try{
+				if(bfNativeplace.equals("")){
+					location.put("其他",location.get("其他")+1);
+				}
+				else if(bfNativeplace.indexOf("宁波")!=-1)
+					location.put("宁波",location.get("宁波")+1);
+				else
+					location.put("其他",location.get("其他")+1);
+			}catch (Exception e)
+			{
+				location.put("其他",location.get("其他")+1);
+			}
+		}
+		cd.setBrith_year(birth_year);
+		cd.setLocation(location);
+		cd.setName(name);
+		JsonObject jsonMsg = new JsonObject();
+
+//		JsonObject returnData = new JsonParser().parse(jsonstr).getAsJsonObject();
+		jsonMsg.addProperty("data", (new Gson()).toJson(cd).toString());
+		return jsonMsg.toString();
+	}
+	// http://localhost:8080/selectStubyClassname.action?classname=高三(10)
 }
+// 返回班级学生的性别，姓氏，地域,出生年份的扇形图
+// s
