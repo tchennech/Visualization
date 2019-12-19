@@ -20,7 +20,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    bf_StudentID, bf_Name, bf_sex, bf_nation, bf_BornDate, cla_Name, bf_NativePlace, 
+    bf_StudentID, bf_Name, bf_sex, bf_nation, bf_BornDate, cla_Name, bf_NativePlace,
     Bf_ResidenceType, bf_policy, cla_id, cla_term, bf_zhusu, bf_leaveSchool, bf_qinshihao
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -206,9 +206,14 @@
   <select id="selectStunamebyid" parameterType="String" resultType="String">
     select bf_Name from student_info where bf_StudentID=#{id};
   </select>
+  <select id="selectStunamebyclass" parameterType="String" resultType="com.clt.domain.StudentInfo">
+    select * from student_info where cla_Name=#{classname};
+  </select>
   <select id="selectStubyClassname" parameterType="String" resultMap="BaseResultMap">
-
-select * from student_info where cla_Name=#{classname};
+    select * from student_info where cla_Name=#{classname};
+  </select>
+  <select id="selectClassStu" resultType="com.clt.domain.ClassStus">
+    SELECT  cla_Name,count(1) num FROM `student_info` GROUP BY cla_Name;
   </select>
 </mapper>
 

@@ -1,5 +1,6 @@
 package com.clt.dao;
 
+import com.clt.domain.ClassStus;
 import com.clt.domain.StudentInfo;
 
 import java.util.List;
@@ -21,4 +22,5 @@ public interface StudentInfoMapper {
     String selectStunamebyid(String id);
 
     List<StudentInfo> selectStubyClassname(String classname);
+    List<ClassStus>selectClassStu();
 }

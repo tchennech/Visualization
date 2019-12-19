@@ -1,11 +1,15 @@
 package com.clt.controller;
 
+import com.clt.domain.ClassStus;
+import com.clt.domain.StudentInfo;
 import com.clt.domain.StudentInfoResult;
 import com.clt.exclusive_to_Zero.Classdetail;
 import com.clt.service.GradeService;
 import com.clt.service.StudentService;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,7 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +40,7 @@ public class StudentController {
         String msg = request.getParameter(paraName).toString();
         return msg;
     }
-	
+
 	@RequestMapping(value="getallstudata", method=RequestMethod.POST)
 	@ResponseBody
     public String getAllStudentHomeData(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
@@ -52,7 +55,7 @@ public class StudentController {
 			jsonMsg.addProperty("msg", e.getMessage());
 			return jsonMsg.toString();
 		}
-               
+
         jsonMsg.addProperty("status", 0);
         jsonMsg.addProperty("data", (new Gson()).toJson(result).toString());
         System.out.println(jsonMsg.toString());
@@ -75,7 +78,6 @@ public class StudentController {
 		location.put("宁波",0);
 		location.put("其他",0);
 		Map<String,Integer> birth_year = new HashMap<>();
-		System.out.println(stus.size());
 
 		for (int i = 0; i < stus.size(); i++) {
 			StudentInfo studentInfo =  stus.get(i);
@@ -84,7 +86,6 @@ public class StudentController {
 			else if(studentInfo.getBfSex().equals("famale"))//性别
 				cd.setFamale(cd.getFamale()+1);
 			String FistName=studentInfo.getBfName().substring(0,1);
-			System.out.println("姓名"+FistName+name.get("吴"));
 			if(name.get(FistName)==null)//如果姓氏数量为0
 			{
 				name.put(FistName,1);
@@ -107,13 +108,7 @@ public class StudentController {
 			}catch (Exception e){
 				birth_year.put("2000",birth_year.get("2000")+1);
 			}
-
-
-
-
 			String bfNativeplace = studentInfo.getBfNativeplace();//获取出生地名
-
-//			System.out.println(bfNativeplace.indexOf("宁波"));
 			try{
 				if(bfNativeplace.equals("")){
 					location.put("其他",location.get("其他")+1);
@@ -131,12 +126,21 @@ public class StudentController {
 		cd.setLocation(location);
 		cd.setName(name);
 		JsonObject jsonMsg = new JsonObject();
-
-//		JsonObject returnData = new JsonParser().parse(jsonstr).getAsJsonObject();
 		jsonMsg.addProperty("data", (new Gson()).toJson(cd).toString());
+
 		return jsonMsg.toString();
 	}
 	// http://localhost:8080/selectStubyClassname.action?classname=高三(10)
+
+	@RequestMapping(value="selectClassStu", method=RequestMethod.GET)
+	@ResponseBody
+	public String studentService(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+		List<ClassStus> classStuses = studentService.selectClassStu();
+		System.out.println(classStuses.size());
+		JsonArray jsonArray = new Gson().toJsonTree(classStuses, new TypeToken<List<ClassStus>>() {}.getType()).getAsJsonArray();
+		return  jsonArray.toString();
+	}
+
 }
 // 返回班级学生的性别，姓氏，地域,出生年份的扇形图
 // s

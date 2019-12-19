@@ -4,6 +4,7 @@ import com.clt.common.Const;
 import com.clt.dao.LocationMapper;
 import com.clt.dao.StudentInfoMapper;
 import com.clt.domain.ChartDataNV;
+import com.clt.domain.ClassStus;
 import com.clt.domain.StudentInfo;
 import com.clt.domain.StudentInfoResult;
 import com.clt.util.ReadPlaceMap;
@@ -85,9 +86,11 @@ public class StudentService {
 	public String selectStunamebyid(String id){
 		return sim.selectStunamebyid(id);
 	}
-	public List<StudentInfo> selectStubyClassname(String classname){
+	public List<StudentInfo> selectStubyClassname(String classname) {
 		return sim.selectStubyClassname(classname);
 
 	}
-
+	public List<ClassStus>selectClassStu(){
+		return sim.selectClassStu();
+	}
 }
