@@ -40,20 +40,64 @@
     </barChart>
   </el-col>
   <el-row>
-    
+    <el-col 
+    :span="8"
+    :offset="4"
+    >
+      <pieCHart :name="pieSexData.name"
+              :id="pieSexData.id"
+              :data="pieSexData.data"
+              v-if='pieSexData.flag'>
+    </pieCHart>
+    </el-col>
+    <el-col 
+    :span="4"
+    :offset="2"
+    >
+      <pieCHart :name="pieBirthData.name"
+              :id="pieBirthData.id"
+              :data="pieBirthData.data"
+              v-if='pieBirthData.flag'
+              >
+    </pieCHart>
+    </el-col>
   </el-row>
-
-
+  <el-row>
+    <el-col 
+    :span="8"
+    :offset="4"
+    >
+      <pieCHart :name="pieNameData.name"
+              :id="pieNameData.id"
+              :data="pieNameData.data"
+              v-if='pieNameData.flag'
+              >
+    </pieCHart>
+    </el-col>
+    <el-col 
+    :span="4"
+    :offset="2"
+    >
+      <pieCHart :name="pieLocationData.name"
+              :id="pieLocationData.id"
+              :data="pieLocationData.data"
+              v-if='pieLocationData.flag'
+              >
+    </pieCHart>
+    </el-col>
+  </el-row>
 
   </div>
 </template>
 <script>
 import gHead from '@/components/head.vue'
 import barChart from '@/components/barChart.vue'
+import pieCHart from '@/components/pieChart.vue'
 export default {
   components: {
     gHead,
-    barChart
+    barChart,
+    pieCHart
   },
   data () {
     return {
@@ -64,11 +108,43 @@ export default {
         data:[],
         xLabel:[],
         flag: false
+      },
+      pieSexData: {
+        id: 'sexDis',
+        name: '班级学生性别分布',
+        data: [{ value: 335, name: '男' },
+          { value: 310, name: '女' }
+        ],
+        flag: false
+      },
+      pieBirthData: {
+        id: 'sexDis',
+        name: '班级学生出生年份分布',
+        data: [{ value: 335, name: '男' },
+          { value: 310, name: '女' }
+        ],
+        flag: false
+      },
+      pieNameData: {
+        id: 'sexDis',
+        name: '班级学生姓氏分布',
+        data: [{ value: 335, name: '男' },
+          { value: 310, name: '女' }
+        ],
+        flag: false
+      },
+      pieLocationData: {
+        id: 'sexDis',
+        name: '班级学生生源地分布',
+        data: [{ value: 335, name: '男' },
+          { value: 310, name: '女' }
+        ],
+        flag: false
       }
     }
   },
   mounted () {
-    this.classstudents()
+    // this.classstudents()
   },
   methods: {
     search:function(){
@@ -80,8 +156,24 @@ export default {
           function (res) {
             let result = JSON.parse(JSON.parse(res.bodyText))
             let res2=JSON.parse(result.data)
-            console.log(res2)
+            this.pieSexData.data=[{ value: res2.male, name: '男' },
+                  { value: res2.famale, name: '女' }]
+                   this.pieSexData.flag=true
 
+            this.pieLocationData.data=[{ value: res2.location.宁波, name: '宁波' },
+                  { value: res2.location.其他, name: '其他' }]
+                   this.pieLocationData.flag=true
+            this.pieBirthData.data=[{ value: res2.brith_year[2000], name: '2000' },
+                 { value: res2.brith_year[2001], name: '2001' },
+                 { value: res2.brith_year[2002], name: '2002' }]
+                this.pieBirthData.flag=true
+                let names=[]
+            for(let key in res2.name){
+              names.push({value: res2.name[key], name:key})
+            }
+              this.pieNameData.data=names
+              this.pieNameData.flag=true
+              console.log(res2)
           })
       }
     },
